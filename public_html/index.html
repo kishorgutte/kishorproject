@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" href="kendo.common.min.css">
+<!--         <link rel="stylesheet" href="Style.css">-->
+        <link rel="stylesheet" href="kendo.rtl.min.css">
+        <link rel="stylesheet" href="kendo.default.min.css">
+<!--        <link rel="stylesheet" href="kendo.mobile.all.min.css">-->
+
+
+        
+    </head>
+    <body>
+
+        <div>Welcome</div>
+        <p>
+            
+       <button data-bind="kendoButton: { clicked: hidevideo }">Hide</button>
+       <button data-bind="kendoButton: { clicked: showvideo }">Show</button>
+       
+       </p>
+        <p>
+            <iframe data-bind="visible: isvideohidden" id="myvideo" width="420" height="315" frameborder="0" allowfullscreen >
+            </iframe>
+        </p> 
+         <script src="jquery-2.1.4.min.js"></script>
+         <script src="knockout-3.3.0.js"></script>
+
+        <script src="kendo.all.min.js"></script>
+        <script src="knockout-kendo.min.js"></script>
+        <script src="sample.js"></script>
+    </body>
+       
+</html>
