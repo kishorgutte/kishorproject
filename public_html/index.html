@@ -26,10 +26,12 @@ and open the template in the editor.
             
        <button data-bind="kendoButton: { clicked: hidevideo }">Hide</button>
        <button data-bind="kendoButton: { clicked: showvideo }">Show</button>
+       <button data-bind="kendoButton: { clicked: previousvideo }">Previous</button>
+       <button data-bind="kendoButton: { clicked: nextvideo }">Next</button>
        
        </p>
         <p>
-            <iframe data-bind="visible: isvideohidden" id="myvideo" width="420" height="315" frameborder="0" allowfullscreen >
+            <iframe data-bind="visible: isvideohidden" id="myvideo"  width="560" height="315" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
             </iframe>
         </p> 
          <script src="jquery-2.1.4.min.js"></script>

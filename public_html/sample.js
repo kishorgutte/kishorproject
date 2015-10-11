@@ -10,16 +10,33 @@
 // ko.applyBindings(new AppViewModel());
 // 
 //});
-$("#myvideo").attr("src","https://www.youtube.com/v/R8rNw0bGOBA");
+
+$("#myvideo").attr("src","https://www.youtube.com/v/R8rNw0bGOBA?autoplay=1");
+var totalcount=0;
 var self = {
     isvideohidden: ko.observable(true),
+    videolist:ko.observableArray(),
     hidevideo: function () {
         this.isvideohidden(false);
     },
     showvideo: function () {
         this.isvideohidden(true);
     },
+    nextvideo:function (){
+      totalcount = totalcount + 1;  
+     $("#myvideo").attr("src",this.videolist()[totalcount]);
+    },
+    previousvideo:function (){
+      totalcount = totalcount - 1;
+      $("#myvideo").attr("src",this.videolist()[totalcount]);
+    },
 };
+
+$.getJSON("videolist.json", function(data) { 
+   for(var i=0 ; i <data.url.length;i++  ){ 
+    self.videolist.push(data.url[i]); 
+   }
+});
 
 ko.applyBindings(self);
 
