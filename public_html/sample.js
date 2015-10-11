@@ -3,13 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
-//$(document).ready(function () {
-//   
-// ko.applyBindings(new AppViewModel());
-// 
-//});
+//Command to trigger Jenkins
+//curl http://52.11.228.37:8080/git/notifyCommit?url=https://github.com/kishorgutte/kishorproject.git
 
 $("#myvideo").attr("src","https://www.youtube.com/v/R8rNw0bGOBA?autoplay=1");
 var totalcount=0;
