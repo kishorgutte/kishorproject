@@ -14,3 +14,23 @@ and open the template in the editor.
 #player {
      margin:1%;
 }
+#playvideo{
+    width:7%; 
+}
+#pausevideo{
+    width:7%;
+}
+#showbutton {
+    width:7%; 
+}
+#hidebutton{
+    width:7%; 
+}
+.profile{
+    margin-right: 1%;
+    float:right;
+}
+#myname{
+    font-size: large;
+}
+

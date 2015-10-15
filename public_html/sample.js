@@ -64,6 +64,7 @@ var self = {
       player.previousVideo();
     },
     Playvideo:function (){
+        $("#playvideo").hide();
         player.playVideo();
     },
     Pausevideo:function (){
@@ -79,7 +80,7 @@ $.getJSON("videolist.json", function(data) {
     self.videolist.push(YouTubeGetID(data.url[i])); 
    }
 });
-
+player.pauseVideo();
 ko.applyBindings(self);
 
 
