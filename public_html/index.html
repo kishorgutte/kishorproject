@@ -6,24 +6,23 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Music World !</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        <link rel="stylesheet" href="kendo.common.min.css">
-<!--         <link rel="stylesheet" href="Style.css">-->
-        <link rel="stylesheet" href="kendo.rtl.min.css">
-        <link rel="stylesheet" href="kendo.default.min.css">
-<!--        <link rel="stylesheet" href="kendo.mobile.all.min.css">-->
+        <link rel="stylesheet" href="css/kendo.common.min.css">
+        <link rel="stylesheet" href="css/Style.css">
+        <link rel="stylesheet" href="css/kendo.rtl.min.css">
+        <link rel="stylesheet" href="css/kendo.default.min.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
 
-
-        
     </head>
     <body>
 
         <div>Welcome</div>
-        <p>
-            
+        
+       <div id="mediacontrols">
        <button data-bind="kendoButton: { clicked: hidevideo }">Hide</button>
        <button data-bind="kendoButton: { clicked: showvideo }">Show</button>
        <button data-bind="kendoButton: { clicked: Playvideo }">Play</button>
@@ -31,19 +30,17 @@ and open the template in the editor.
        <button data-bind="kendoButton: { clicked: stopvideo }">Stop</button>
        <button data-bind="kendoButton: { clicked: previousvideo }">Previous</button>
        <button data-bind="kendoButton: { clicked: nextvideo }">Next</button>
-       
-       </p>
+       </div>
+  
        <div id="player">
-           
-           
-       </div> 
+          
+       </div>
+         <script src="js/jquery-2.1.4.min.js"></script>
+         <script src="js/knockout-3.3.0.js"></script>
+        <script src="js/kendo.all.min.js"></script>
+        <script src="js/knockout-kendo.min.js"></script>
+        <script src="js/sample.js"></script>
 
-         <script src="jquery-2.1.4.min.js"></script>
-         <script src="knockout-3.3.0.js"></script>
-
-        <script src="kendo.all.min.js"></script>
-        <script src="knockout-kendo.min.js"></script>
-        <script src="sample.js"></script>
     </body>
        
 </html>
