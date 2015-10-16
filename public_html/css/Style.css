@@ -19,6 +19,7 @@ and open the template in the editor.
 }
 #pausevideo{
     width:7%;
+    display: none;
 }
 #showbutton {
     width:7%; 

@@ -2,7 +2,6 @@
 //Command to trigger Jenkins
 //curl http://52.11.228.37:8080/git/notifyCommit?url=https://github.com/kishorgutte/kishorproject.git
 
-$("#pausevideo").hide();
 var tag = document.createElement('script');
 var player;
 var totalcount = 0;
@@ -26,7 +25,7 @@ function onYouTubeIframeAPIReady() {
 // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
     player.loadPlaylist(self.videolist());
-    //event.target.playVideo();
+    event.target.pauseVideo();
 }
 // 5. The API calls this function when the player's state changes.
 //    The function indicates that when playing a video (state=1),
@@ -55,7 +54,6 @@ function YouTubeGetID(url) {
     }
     return ID;
 }
-
 var self = {
     isvideohidden: ko.observable(true),
     videolist: ko.observableArray(),
@@ -87,7 +85,7 @@ var self = {
         player.stopVideo();
     },
 };
-
+$('.make-switch').bootstrapSwitch('setSizeClass', 'switch-large');
 $.getJSON("videolist.json", function (data) {
     for (var i = 0; i < data.url.length; i++) {
         self.videolist.push(YouTubeGetID(data.url[i]));
