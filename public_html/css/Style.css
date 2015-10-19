@@ -16,10 +16,10 @@ and open the template in the editor.
 }
 #playvideo{
     width:7%; 
+    display: none;
 }
 #pausevideo{
     width:7%;
-    display: none;
 }
 #showbutton {
     width:7%; 

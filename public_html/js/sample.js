@@ -25,7 +25,10 @@ function onYouTubeIframeAPIReady() {
 // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
     player.loadPlaylist(self.videolist());
-    event.target.pauseVideo();
+
+    player.setShuffle(true);
+    player.setLoop(true);
+    //event.target.playVideo();
 }
 // 5. The API calls this function when the player's state changes.
 //    The function indicates that when playing a video (state=1),
