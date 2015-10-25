@@ -89,13 +89,26 @@ var self = {
     },
 };
 $('.make-switch').bootstrapSwitch('setSizeClass', 'switch-large');
-$.getJSON("videolist.json", function (data) {
+ko.applyBindings(self);
+
+
+$.getJSON("Hindivideolist.json", function (data) {
     for (var i = 0; i < data.url.length; i++) {
         self.videolist.push(YouTubeGetID(data.url[i]));
     }
 });
 
-ko.applyBindings(self);
+$('#catagories :checkbox').click(function() {
+    var $this = $(this);
+    // $this will contain a reference to the checkbox   
+    if ($this.is(':checked')) {
+        alert("ck");
+    } else {
+        alert("un");
+    }
+});
+
+
 
 
 
