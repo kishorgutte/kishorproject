@@ -24,7 +24,7 @@ function onYouTubeIframeAPIReady() {
 }
 // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
-    player.loadPlaylist(self.videolist());
+    player.loadPlaylist(self.Hindivideolist());
 
     player.setShuffle(true);
     player.setLoop(true);
@@ -59,7 +59,8 @@ function YouTubeGetID(url) {
 }
 var self = {
     isvideohidden: ko.observable(true),
-    videolist: ko.observableArray(),
+    Hindivideolist: ko.observableArray(),
+    Englishvideolist :ko.observableArray(),
 //    hidevideo: function () {
 //        $("#showbutton").show();
 //        $("#hidebutton").hide();
@@ -94,7 +95,12 @@ ko.applyBindings(self);
 
 $.getJSON("Hindivideolist.json", function (data) {
     for (var i = 0; i < data.url.length; i++) {
-        self.videolist.push(YouTubeGetID(data.url[i]));
+        self.Hindivideolist.push(YouTubeGetID(data.url[i]));
+    }
+});
+$.getJSON("Englishvideolist.json", function (data) {
+    for (var i = 0; i < data.url.length; i++) {
+        self.Englishvideolist.push(YouTubeGetID(data.url[i]));
     }
 });
 
