@@ -12,17 +12,16 @@ and open the template in the editor.
     margin:1%;
 }
 #player {
-     margin:1%;
+    width: inherit;
 }
 #playvideo{
-    width:7%; 
+    width: 84px; 
     display: none;
 }
 #pausevideo{
-    width:7%;
+    width: 84px;
 }
-#showbutton {
-    width:7%; 
+#showbutton { 
 }
 #hidebutton{
     width:7%; 

@@ -60,14 +60,15 @@ function YouTubeGetID(url) {
 var self = {
     isvideohidden: ko.observable(true),
     Hindivideolist: ko.observableArray(),
-    Englishvideolist :ko.observableArray(),
+    Englishvideolist: ko.observableArray(),
+    videolistmix: ko.observableArray(),
 //    hidevideo: function () {
 //        $("#showbutton").show();
 //        $("#hidebutton").hide();
 //        $("#player").hide();
 //    },
     showvideo: function () {
-       // $("#player").show();
+        // $("#player").show();
     },
     nextvideo: function () {
         player.nextVideo();
@@ -100,22 +101,52 @@ ko.applyBindings(self);
 $.getJSON("Hindivideolist.json", function (data) {
     for (var i = 0; i < data.url.length; i++) {
         self.Hindivideolist.push(YouTubeGetID(data.url[i]));
+        self.videolistmix.push(YouTubeGetID(data.url[i]));
     }
 });
 $.getJSON("Englishvideolist.json", function (data) {
     for (var i = 0; i < data.url.length; i++) {
         self.Englishvideolist.push(YouTubeGetID(data.url[i]));
+        self.videolistmix.push(YouTubeGetID(data.url[i]));
     }
 });
 
-$('#catagories :checkbox').click(function() {
+$('#catagories :checkbox').click(function () {
     var $this = $(this);
-    // $this will contain a reference to the checkbox   
-    if ($this.is(':checked')) {
-        alert("ck");
-    } else {
-        alert("un");
+    if ($("input:checkbox:checked").length === 1) {
+
+        if ($this.is(':checked')) {
+            if (this.value == "hindi") {
+                player.loadPlaylist(self.Hindivideolist());
+                player.setShuffle(true);
+            }
+            if (this.value == "english") {
+                player.loadPlaylist(self.Englishvideolist());
+                player.setShuffle(true);
+            }
+        } else {
+            if (this.value == "hindi") {
+                player.loadPlaylist(self.Englishvideolist());
+                player.setShuffle(true);
+            }
+            if (this.value == "english") {
+                player.loadPlaylist(self.Hindivideolist());
+                player.setShuffle(true);
+            }
+
+        }
     }
+
+    if ($("input:checkbox:checked").length === 2) {
+        player.loadPlaylist(self.videolistmix());
+        player.setShuffle(true);
+    }
+    if ($("input:checkbox:checked").length === 0) {
+        alert("Please select one categories otherwise default categories will be played")
+        player.loadPlaylist(self.Hindivideolist());
+        player.setShuffle(true);
+    }
+
 });
 
 

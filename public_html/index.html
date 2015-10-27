@@ -20,10 +20,10 @@ and open the template in the editor.
 
     </head>
     <body>
-        <div id="headerdiv">
+        <div class="container" id="headerdiv">
             <div id="mediacontrols">
-                <button type="button" data-toggle="modal" data-target=".bs-example-modal-lg" id="showbutton" class="btn btn-primary"  data-bind="click: showvideo"><span class="glyphicon glyphicon-eye-open"></span>  Show</button>
-                <button type="button" id="playvideo" class="btn btn-primary"  data-bind="click : Playvideo"><span class="glyphicon glyphicon-play"></span>  Play</button>
+                <button type="button" data-toggle="modal" data-target=".youtubemodal" id="showbutton" class="btn btn-primary"  data-bind="click: showvideo"><span class="glyphicon glyphicon-eye-open"></span>  Show</button>
+                <button type="button" id="playvideo" class="btn btn-primary"  data-bind="click : Playvideo"><span class="glyphicon glyphicon-play"></span>  Play   </button>
                 <button type="button" id="pausevideo" class="btn btn-primary"  data-bind="click: Pausevideo"><span class="glyphicon glyphicon-pause"></span>  Pause</button>
                 <button type="button" class="btn btn-primary"  data-bind="click:stopvideo"><span class="glyphicon glyphicon-stop"></span>  Stop</button>
                 <button type="button" class="btn btn-primary"  data-bind="click: previousvideo"><span class="glyphicon glyphicon-backward"></span>   Previous</button>
@@ -32,7 +32,7 @@ and open the template in the editor.
                 <span class="text-right profile">
 
                     <span id="myname" class="label label-default">Kishor Gutte</span>
-                    <img src="images/naruto_profile.jpg" class="img-circle" alt="Naruto " width="100" height="100"> 
+                    <img src="images/naruto_profile.jpg" class="img-circle" alt="Naruto " width="50" height="50"> 
                 </span>
                 <div id="catagories"> 
                     <div class="btn-group">
@@ -65,15 +65,24 @@ and open the template in the editor.
 
 
         <!-- Modal -->
-        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal fade bs-example-modal-lg youtubemodal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Youtube</h4>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12 col-lg-12">
+                                <img src="images/youtubelogo.png" alt="Youtube Home" class="img-rounded" height="40">
+                            </div>
+                        </div>
+
                     </div>
                     <div class="modal-body">
-                        <div id="player"></div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12 col-lg-12">
+                                <div id="player"></div>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -89,10 +98,10 @@ and open the template in the editor.
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <div class="row">
-                            <div class="col-lg-6">
-                            Youtube
+                            <div class="col-lg-6 col-xs-6 col-md-6">
+                                <img src="images/youtubelogo.png" alt="Youtube Home" class="img-rounded" height="40">
                             </div><!-- /.col-lg-6 -->
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 col-xs-6 col-md-6">
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Search for...">
                                     <span class="input-group-btn">
