@@ -88,6 +88,10 @@ var self = {
     stopvideo: function () {
         player.stopVideo();
     },
+    closecurrentdiv: function ()
+    {
+        console.log("Hi");
+    },
 };
 $('.make-switch').bootstrapSwitch('setSizeClass', 'switch-large');
 ko.applyBindings(self);
