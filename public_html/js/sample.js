@@ -1,7 +1,8 @@
 
 //Command to trigger Jenkins
 //curl http://52.11.228.37:8080/git/notifyCommit?url=https://github.com/kishorgutte/kishorproject.git
-
+//client id=954570292134-r2u7o4our3i3kv7meoj569ga30j17qvf.apps.googleusercontent.com
+//key =SGiPBvEwW7uVQbvKA1Bxr_0b
 var tag = document.createElement('script');
 var player;
 var totalcount = 0;
@@ -93,6 +94,27 @@ var self = {
     {
         console.log("Hi");
     },
+    Searchonyoutube : function ()
+    {
+        var q =$(".youtubesearchfield").val();
+        console.log(q);
+        
+        var request = gapi.client.youtube.search.list({
+            part: "snippet",
+            type: "video",
+            q: encodeURIComponent($(".youtubesearchfield").val()).replace(/%20/g, "+"),
+            maxResults: 3,
+            order: "viewCount",
+       }); 
+       // execute the request
+       request.execute(function(response) {
+          var results = response.result;
+          $.each(results.items, function(index, item) {
+            console.log(item);
+          });
+       });
+ 
+    }
 };
 $('.make-switch').bootstrapSwitch('setSizeClass', 'switch-large');
 ko.applyBindings(self);
@@ -150,6 +172,12 @@ $('#catagories :checkbox').click(function () {
 });
 
 
+function init() {
+    gapi.client.setApiKey("SGiPBvEwW7uVQbvKA1Bxr_0b");
+    gapi.client.load("youtube", "v3", function() {
+        // yt api is ready
+    });
+}
 
 
 
