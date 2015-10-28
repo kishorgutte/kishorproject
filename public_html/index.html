@@ -28,7 +28,7 @@ and open the template in the editor.
                 <button type="button" class="btn btn-primary"  data-bind="click:stopvideo"><span class="glyphicon glyphicon-stop"></span>  Stop</button>
                 <button type="button" class="btn btn-primary"  data-bind="click: previousvideo"><span class="glyphicon glyphicon-backward"></span>   Previous</button>
                 <button type="button" class="btn btn-primary"  data-bind="click: nextvideo"><span class="glyphicon glyphicon-forward"></span>  Next</button>
-                <button type="button" data-toggle="modal" data-target=".mymodel" id="showbutton" class="btn btn-primary"  data-bind=""><span class="glyphicon glyphicon glyphicon-search"></span>  Search</button>
+                <button type="button" data-toggle="modal" data-target=".mymodel" id="showbutton" class="btn btn-primary"  data-bind="click:init "><span class="glyphicon glyphicon glyphicon-search"></span>  Search</button>
                 <span class="text-right profile">
 
                     <span id="myname" class="label label-default">Kishor Gutte</span>
@@ -105,19 +105,19 @@ and open the template in the editor.
                                 <div class="input-group">
                                     <input type="text" class="form-control youtubesearchfield" placeholder="Search for...">
                                     <span class="input-group-btn">
-                                        <button class="btn btn-default" data-bind="click:Searchonyoutube" type="button">Go!</button>
+                                        <button class="btn btn-default" id="goforsearch" data-bind="click:Searchonyoutube" type="button">Go!</button>
                                     </span>
                                 </div><!-- /input-group -->
                             </div><!-- /.col-lg-6 -->
                         </div><!-- /.row -->
                     </div>
                     <div class="modal-body">
-                        <div class="row" data-bind="foreach:Hindivideolist ">
-                            <div class="col-xs-6 col-md-3 myclass">
-                                <button type="button" class="close" data-dismiss="closecurrentdiv" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <a href="#" class="thumbnail">
-                                    <img src="images/naruto_profile.jpg" alt="...">
-                                    <span>Kishor</span>
+                        <div class="row" data-bind="foreach:youtubesearchedlist">
+                            <div class="col-xs-6 col-md-3">
+<!--                                <button type="button" class="close" data-dismiss="closecurrentdiv" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                                <a target="_blank" data-bind="attr:{href:youtubelink,title:title}"  class="thumbnail">
+                                    <img data-bind="attr:{src:videothumbnail}">
+                                    <span class="resultTitle" data-bind="text:ellipsedtitle "></span>
                                 </a>
                             </div>
                         </div>

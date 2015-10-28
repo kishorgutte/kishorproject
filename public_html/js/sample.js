@@ -63,6 +63,7 @@ var self = {
     Hindivideolist: ko.observableArray(),
     Englishvideolist: ko.observableArray(),
     videolistmix: ko.observableArray(),
+    youtubesearchedlist : ko.observableArray(),
 //    hidevideo: function () {
 //        $("#showbutton").show();
 //        $("#hidebutton").hide();
@@ -96,25 +97,35 @@ var self = {
     },
     Searchonyoutube : function ()
     {
+        self.youtubesearchedlist.removeAll();
         var q =$(".youtubesearchfield").val();
         console.log(q);
         
         var request = gapi.client.youtube.search.list({
             part: "snippet",
             type: "video",
+            safeSearch:"strict",
             q: encodeURIComponent($(".youtubesearchfield").val()).replace(/%20/g, "+"),
-            maxResults: 3,
+            maxResults: 16,
             order: "viewCount",
        }); 
-       // execute the request
+
        request.execute(function(response) {
           var results = response.result;
           $.each(results.items, function(index, item) {
-            console.log(item);
+            self.youtubesearchedlist.push(new FormatToDisplay(item));
           });
        });
  
-    }
+    },
+    
+    init:function ()
+    {
+    gapi.client.setApiKey("AIzaSyAqLM3LNORiFcgNv7UykOACQl82Rr4f2B4");
+    gapi.client.load("youtube", "v3", function() {
+       console.log("Youtube Api is ready");
+    });
+    },
 };
 $('.make-switch').bootstrapSwitch('setSizeClass', 'switch-large');
 ko.applyBindings(self);
@@ -171,13 +182,28 @@ $('#catagories :checkbox').click(function () {
 
 });
 
-
-function init() {
-    gapi.client.setApiKey("SGiPBvEwW7uVQbvKA1Bxr_0b");
-    gapi.client.load("youtube", "v3", function() {
-        // yt api is ready
-    });
+function FormatToDisplay(item){
+   
+   var temp=item.snippet.title;
+    if(temp.length > 59){
+        temp=temp.trim().substring(0,50)+"...";
+    }
+    if(temp.length < 27){
+        temp=temp+"                  ";
+    }
+   
+    this.ellipsedtitle=temp;
+    this.videoId=item.id.videoId;
+    this.title=item.snippet.title;
+    this.videothumbnail = item.snippet.thumbnails.medium.url;
+    this.youtubelink="https://www.youtube.com/watch?v="+this.videoId;
 }
+
+$(".youtubesearchfield").keypress(function(event) {
+    if (event.which == 13) {
+      $( "#goforsearch" ).trigger( "click" );
+    }
+});
 
 
 
