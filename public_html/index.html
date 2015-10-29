@@ -11,12 +11,12 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <link rel="stylesheet" href="css/kendo.common.min.css">
-        <link rel="stylesheet" href="css/Style.css">
         <link rel="stylesheet" href="css/kendo.rtl.min.css">
         <link rel="stylesheet" href="css/kendo.default.min.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/bootstrap-switch.min.css">
+        <link rel="stylesheet" href="css/Style.css">
 
     </head>
     <body>
@@ -114,8 +114,15 @@ and open the template in the editor.
                     <div class="modal-body">
                         <div class="row" data-bind="foreach:youtubesearchedlist">
                             <div class="col-xs-6 col-md-3">
-<!--                                <button type="button" class="close" data-dismiss="closecurrentdiv" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                                <!--                                <button type="button" class="close" data-dismiss="closecurrentdiv" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                 
                                 <a target="_blank" data-bind="attr:{href:youtubelink,title:title}"  class="thumbnail">
+                                    <span class="checkbox align-right" id="searchedcheckbox">
+                                    <label class="pull-right">
+                                        <input type="checkbox" value="english">
+                                        <span class="cr " style="margin-right: 0px"><i class="cr-icon glyphicon glyphicon glyphicon glyphicon-ok"></i></span>
+                                    </label>
+                                </span>
                                     <img data-bind="attr:{src:videothumbnail}">
                                     <span class="resultTitle" data-bind="text:ellipsedtitle "></span>
                                 </a>
