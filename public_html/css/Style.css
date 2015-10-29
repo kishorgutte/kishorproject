@@ -7,7 +7,7 @@ and open the template in the editor.
     Created on : Oct 15, 2015, 2:45:30 PM
     Author     : Kishor Gutte
 */
-#searchedcheckbox{
+.searchedcheckbox{
     display: inline;
     
 }
@@ -41,8 +41,14 @@ and open the template in the editor.
 }
 .resultTitle{
     font-size: small;
+    color: #233ADB;
 }
-
+.resultTitle:hover{
+    text-decoration: none;
+}
+.thumbnail:hover{
+    text-decoration: none;
+}
 /*
 Adding css or checkbox
 */

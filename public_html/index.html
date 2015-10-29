@@ -109,22 +109,20 @@ and open the template in the editor.
                                     </span>
                                 </div><!-- /input-group -->
                             </div><!-- /.col-lg-6 -->
-                        </div><!-- /.row -->
+                        </div><!-- /.row href:youtubelink,-->
                     </div>
                     <div class="modal-body">
                         <div class="row" data-bind="foreach:youtubesearchedlist">
                             <div class="col-xs-6 col-md-3">
-                                <!--                                <button type="button" class="close" data-dismiss="closecurrentdiv" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
-                 
-                                <a target="_blank" data-bind="attr:{href:youtubelink,title:title}"  class="thumbnail">
-                                    <span class="checkbox align-right" id="searchedcheckbox">
+                                <a href="javascript:void(0)" target="_blank" data-bind="attr:{title:title},"  class="thumbnail" id="myclass">
+                                    <span class="checkbox align-right searchedcheckbox">
                                     <label class="pull-right">
-                                        <input type="checkbox" value="english">
-                                        <span class="cr " style="margin-right: 0px"><i class="cr-icon glyphicon glyphicon glyphicon glyphicon-ok"></i></span>
+                                        <input type="checkbox" data-bind="attr:{value:videoId}">
+                                        <span class="cr " style="margin-right: 0px;font-size: initial;margin-bottom: 2px;"><i class="cr-icon glyphicon glyphicon glyphicon glyphicon-ok"></i></span>
                                     </label>
                                 </span>
-                                    <img data-bind="attr:{src:videothumbnail}">
-                                    <span class="resultTitle" data-bind="text:ellipsedtitle "></span>
+                                    <img data-bind="attr:{src:videothumbnail},click:$parent.playselectedvideo($data.videoId)">
+                                    <span class="resultTitle" data-bind="text:ellipsedtitle,click:$parent.playselectedvideo($data.videoId)"></span>
                                 </a>
                             </div>
                         </div>

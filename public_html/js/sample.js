@@ -25,7 +25,8 @@ function onYouTubeIframeAPIReady() {
 }
 // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
-    player.loadPlaylist(self.Hindivideolist());
+    //player.loadPlaylist(self.Hindivideolist());
+    player.loadPlaylist(self.Englishvideolist());
 
     player.setShuffle(true);
     player.setLoop(true);
@@ -63,7 +64,7 @@ var self = {
     Hindivideolist: ko.observableArray(),
     Englishvideolist: ko.observableArray(),
     videolistmix: ko.observableArray(),
-    youtubesearchedlist : ko.observableArray(),
+    youtubesearchedlist: ko.observableArray(),
 //    hidevideo: function () {
 //        $("#showbutton").show();
 //        $("#hidebutton").hide();
@@ -95,39 +96,45 @@ var self = {
     {
         console.log("Hi");
     },
-    Searchonyoutube : function ()
+    Searchonyoutube: function ()
     {
         self.youtubesearchedlist.removeAll();
-        var q =$(".youtubesearchfield").val();
+        var q = $(".youtubesearchfield").val();
         console.log(q);
-        
+
         var request = gapi.client.youtube.search.list({
             part: "snippet",
             type: "video",
-            safeSearch:"strict",
+            safeSearch: "strict",
             q: encodeURIComponent($(".youtubesearchfield").val()).replace(/%20/g, "+"),
             maxResults: 16,
             order: "viewCount",
-       }); 
+        });
 
-       request.execute(function(response) {
-          var results = response.result;
-          $.each(results.items, function(index, item) {
-            self.youtubesearchedlist.push(new FormatToDisplay(item));
-          });
-       });
- 
+        request.execute(function (response) {
+            var results = response.result;
+            $.each(results.items, function (index, item) {
+                self.youtubesearchedlist.push(new FormatToDisplay(item));
+            });
+        });
+
     },
-    
-    init:function ()
+    playselectedvideo: function (item) {
+        
+        
+     player.loadVideoById(item);   
+     player.setPlaybackQuality("small");
+    },
+   
+    init: function ()
     {
-    gapi.client.setApiKey("AIzaSyAqLM3LNORiFcgNv7UykOACQl82Rr4f2B4");
-    gapi.client.load("youtube", "v3", function() {
-       console.log("Youtube Api is ready");
-    });
+        gapi.client.setApiKey("AIzaSyAqLM3LNORiFcgNv7UykOACQl82Rr4f2B4");
+        gapi.client.load("youtube", "v3", function () {
+            console.log("Youtube Api is ready");
+        });
     },
 };
-$('.make-switch').bootstrapSwitch('setSizeClass', 'switch-large');
+
 ko.applyBindings(self);
 
 
@@ -182,37 +189,28 @@ $('#catagories :checkbox').click(function () {
 
 });
 
-function FormatToDisplay(item){
-   
-   var temp=item.snippet.title;
-    if(temp.length > 59){
-        temp=temp.trim().substring(0,50)+"...";
+function FormatToDisplay(item) {
+
+    var temp = item.snippet.title;
+    if (temp.length > 59) {
+        temp = temp.trim().substring(0, 50) + "...";
     }
-    if(temp.length < 27){
-        temp=temp+"                  ";
+    if (temp.length < 27) {
+        temp = temp + "                  ";
     }
-   
-    this.ellipsedtitle=temp;
-    this.videoId=item.id.videoId;
-    this.title=item.snippet.title;
+
+    this.ellipsedtitle = temp;
+    this.videoId = item.id.videoId;
+    this.title = item.snippet.title;
     this.videothumbnail = item.snippet.thumbnails.medium.url;
-    this.youtubelink="https://www.youtube.com/watch?v="+this.videoId;
+    this.youtubelink = "https://www.youtube.com/watch?v=" + this.videoId;
 }
 
-$(".youtubesearchfield").keypress(function(event) {
+$(".youtubesearchfield").keypress(function (event) {
     if (event.which == 13) {
-      $( "#goforsearch" ).trigger( "click" );
+        $("#goforsearch").trigger("click");
     }
 });
-
-
-
-
-
-
-
-
-
 
 
 
