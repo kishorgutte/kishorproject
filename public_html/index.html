@@ -28,7 +28,7 @@ and open the template in the editor.
                 <button type="button" class="btn btn-primary"  data-bind="click:stopvideo"><span class="glyphicon glyphicon-stop"></span>  Stop</button>
                 <button type="button" class="btn btn-primary"  data-bind="click: previousvideo"><span class="glyphicon glyphicon-backward"></span>   Previous</button>
                 <button type="button" class="btn btn-primary"  data-bind="click: nextvideo"><span class="glyphicon glyphicon-forward"></span>  Next</button>
-                <button type="button" data-toggle="modal" data-target=".mymodel" id="showbutton" class="btn btn-primary"  data-bind="click:init "><span class="glyphicon glyphicon glyphicon-search"></span>  Search</button>
+                <button type="button" data-toggle="modal" data-target=".mymodel" id="showbutton" class="btn btn-primary"  data-bind=""><span class="glyphicon glyphicon glyphicon-search"></span>  Search</button>
                 <span class="text-right profile">
 
                     <span id="myname" class="label label-default">Kishor Gutte</span>
@@ -98,10 +98,10 @@ and open the template in the editor.
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <div class="row">
-                            <div class="col-lg-6 col-xs-6 col-md-6">
+                            <div class="col-lg-6 col-md-6 col-sm-4  col-xs-4">
                                 <img src="images/youtubelogo.png" alt="Youtube Home" class="img-rounded" height="40">
                             </div><!-- /.col-lg-6 -->
-                            <div class="col-lg-6 col-xs-6 col-md-6">
+                            <div class="col-lg-6 col-md-6 col-sm-8 col-xs-8">
                                 <div class="input-group">
                                     <input type="text" class="form-control youtubesearchfield" placeholder="Search for...">
                                     <span class="input-group-btn">
@@ -114,15 +114,15 @@ and open the template in the editor.
                     <div class="modal-body">
                         <div class="row" data-bind="foreach:youtubesearchedlist">
                             <div class="col-xs-6 col-md-3">
-                                <a href="javascript:void(0)" target="_blank" data-bind="attr:{title:title},"  class="thumbnail" id="myclass">
+                                <a href="javascript:void(0)" target="_blank" data-bind="attr:{title:title},"  class="thumbnail myclass">
                                     <span class="checkbox align-right searchedcheckbox">
                                     <label class="pull-right">
                                         <input type="checkbox" data-bind="attr:{value:videoId}">
                                         <span class="cr " style="margin-right: 0px;font-size: initial;margin-bottom: 2px;"><i class="cr-icon glyphicon glyphicon glyphicon glyphicon-ok"></i></span>
                                     </label>
                                 </span>
-                                    <img data-bind="attr:{src:videothumbnail},click:$parent.playselectedvideo($data.videoId)">
-                                    <span class="resultTitle" data-bind="text:ellipsedtitle,click:$parent.playselectedvideo($data.videoId)"></span>
+                                    <img data-bind="click:playselectedvideo,attr:{src:videothumbnail},">
+                                    <div class="resultTitle" data-bind="click:playselectedvideo,text:ellipsedtitle"></div>
                                 </a>
                             </div>
                         </div>
@@ -141,8 +141,9 @@ and open the template in the editor.
         <script src="js/knockout-kendo.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/bootstrap-switch.min.js"></script>
-        <script src="https://apis.google.com/js/client.js?onload=init"></script>
         <script src="js/sample.js"></script>
+        <script src="https://apis.google.com/js/client.js?onload=init"></script>
+        
 
     </body>
 

@@ -7,6 +7,9 @@ and open the template in the editor.
     Created on : Oct 15, 2015, 2:45:30 PM
     Author     : Kishor Gutte
 */
+.myclass{
+    height: auto;
+}
 .searchedcheckbox{
     display: inline;
     
@@ -40,8 +43,13 @@ and open the template in the editor.
     margin-top: 1%
 }
 .resultTitle{
+    max-height: 36px;
+    min-height: 36px;
     font-size: small;
     color: #233ADB;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    /* word-wrap: initial; */
 }
 .resultTitle:hover{
     text-decoration: none;

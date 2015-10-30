@@ -6,11 +6,11 @@
 var tag = document.createElement('script');
 var player;
 var totalcount = 0;
+var viewmodel;
 tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-// 3. This function creates an <iframe> (and YouTube player)
-//    after the API code downloads.
+
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
         height: '480',
@@ -26,7 +26,7 @@ function onYouTubeIframeAPIReady() {
 // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
     //player.loadPlaylist(self.Hindivideolist());
-    player.loadPlaylist(self.Englishvideolist());
+    player.loadPlaylist(viewmodel.Englishvideolist());
 
     player.setShuffle(true);
     player.setLoop(true);
@@ -59,44 +59,48 @@ function YouTubeGetID(url) {
     }
     return ID;
 }
-var self = {
-    isvideohidden: ko.observable(true),
-    Hindivideolist: ko.observableArray(),
-    Englishvideolist: ko.observableArray(),
-    videolistmix: ko.observableArray(),
-    youtubesearchedlist: ko.observableArray(),
-//    hidevideo: function () {
-//        $("#showbutton").show();
-//        $("#hidebutton").hide();
-//        $("#player").hide();
-//    },
-    showvideo: function () {
+
+$(document).ready(function () {
+    viewmodel = new viewmodeldata();
+    viewmodel.init();
+});
+
+var viewmodeldata = function () {
+    var self = this;
+
+    self.isvideohidden = ko.observable(true);
+    self.Hindivideolist = ko.observableArray();
+    self.Englishvideolist = ko.observableArray();
+    self.videolistmix = ko.observableArray();
+    self.youtubesearchedlist = ko.observableArray()
+
+    self.showvideo = function () {
         // $("#player").show();
-    },
-    nextvideo: function () {
+    };
+    self.nextvideo = function () {
         player.nextVideo();
-    },
-    previousvideo: function () {
+    };
+    self.previousvideo = function () {
         player.previousVideo();
-    },
-    Playvideo: function () {
+    };
+    self.Playvideo = function () {
         $("#pausevideo").show();
         $("#playvideo").hide();
         player.playVideo();
-    },
-    Pausevideo: function () {
+    }
+    self.Pausevideo = function () {
         $("#playvideo").show();
         $("#pausevideo").hide();
         player.pauseVideo();
-    },
-    stopvideo: function () {
+    };
+    self.stopvideo = function () {
         player.stopVideo();
-    },
-    closecurrentdiv: function ()
+    };
+    self.closecurrentdiv = function ()
     {
         console.log("Hi");
-    },
-    Searchonyoutube: function ()
+    };
+    self.Searchonyoutube = function ()
     {
         self.youtubesearchedlist.removeAll();
         var q = $(".youtubesearchfield").val();
@@ -117,37 +121,24 @@ var self = {
                 self.youtubesearchedlist.push(new FormatToDisplay(item));
             });
         });
-
-    },
-    playselectedvideo: function (item) {
-        
-        
-     player.loadVideoById(item);   
-     player.setPlaybackQuality("small");
-    },
-   
-    init: function ()
-    {
-        gapi.client.setApiKey("AIzaSyAqLM3LNORiFcgNv7UykOACQl82Rr4f2B4");
-        gapi.client.load("youtube", "v3", function () {
-            console.log("Youtube Api is ready");
-        });
-    },
+    };
+    
+     self.init = function ()
+            {
+                ko.applyBindings(self);
+            };
 };
-
-ko.applyBindings(self);
-
 
 $.getJSON("Hindivideolist.json", function (data) {
     for (var i = 0; i < data.url.length; i++) {
-        self.Hindivideolist.push(YouTubeGetID(data.url[i]));
-        self.videolistmix.push(YouTubeGetID(data.url[i]));
+        viewmodel.Hindivideolist.push(YouTubeGetID(data.url[i]));
+        viewmodel.videolistmix.push(YouTubeGetID(data.url[i]));
     }
 });
 $.getJSON("Englishvideolist.json", function (data) {
     for (var i = 0; i < data.url.length; i++) {
-        self.Englishvideolist.push(YouTubeGetID(data.url[i]));
-        self.videolistmix.push(YouTubeGetID(data.url[i]));
+        viewmodel.Englishvideolist.push(YouTubeGetID(data.url[i]));
+        viewmodel.videolistmix.push(YouTubeGetID(data.url[i]));
     }
 });
 
@@ -157,20 +148,20 @@ $('#catagories :checkbox').click(function () {
 
         if ($this.is(':checked')) {
             if (this.value == "hindi") {
-                player.loadPlaylist(self.Hindivideolist());
+                player.loadPlaylist(viewmodel.Hindivideolist());
                 player.setShuffle(true);
             }
             if (this.value == "english") {
-                player.loadPlaylist(self.Englishvideolist());
+                player.loadPlaylist(viewmodel.Englishvideolist());
                 player.setShuffle(true);
             }
         } else {
             if (this.value == "hindi") {
-                player.loadPlaylist(self.Englishvideolist());
+                player.loadPlaylist(viewmodel.Englishvideolist());
                 player.setShuffle(true);
             }
             if (this.value == "english") {
-                player.loadPlaylist(self.Hindivideolist());
+                player.loadPlaylist(viewmodel.Hindivideolist());
                 player.setShuffle(true);
             }
 
@@ -178,12 +169,12 @@ $('#catagories :checkbox').click(function () {
     }
 
     if ($("input:checkbox:checked").length === 2) {
-        player.loadPlaylist(self.videolistmix());
+        player.loadPlaylist(viewmodel.videolistmix());
         player.setShuffle(true);
     }
     if ($("input:checkbox:checked").length === 0) {
         alert("Please select one categories otherwise default categories will be played")
-        player.loadPlaylist(self.Hindivideolist());
+        player.loadPlaylist(viewmodel.Hindivideolist());
         player.setShuffle(true);
     }
 
@@ -192,19 +183,25 @@ $('#catagories :checkbox').click(function () {
 function FormatToDisplay(item) {
 
     var temp = item.snippet.title;
-    if (temp.length > 59) {
-        temp = temp.trim().substring(0, 50) + "...";
-    }
-    if (temp.length < 27) {
-        temp = temp + "                  ";
-    }
+//    if (temp.length > 59) {
+//        temp = temp.trim().substring(0, 50) + "...";
+//    }
+//    if (temp.length < 27) {
+//        temp = temp + "                  ";
+//    }
 
     this.ellipsedtitle = temp;
     this.videoId = item.id.videoId;
     this.title = item.snippet.title;
     this.videothumbnail = item.snippet.thumbnails.medium.url;
     this.youtubelink = "https://www.youtube.com/watch?v=" + this.videoId;
-}
+    this.playselectedvideo = function (data) {
+        player.loadVideoById(data.videoId);
+        player.setPlaybackQuality("small");
+    };
+    
+    
+};
 
 $(".youtubesearchfield").keypress(function (event) {
     if (event.which == 13) {
@@ -212,12 +209,12 @@ $(".youtubesearchfield").keypress(function (event) {
     }
 });
 
-
-
-
-
-
-
+ function init () {
+    gapi.client.setApiKey("AIzaSyAqLM3LNORiFcgNv7UykOACQl82Rr4f2B4");
+    gapi.client.load("youtube", "v3", function () {
+        console.log("Youtube Api is ready");
+    });
+  };
 
 //ko.bindingHandlers.kendoDropDownList.options={
 //    optionLabel : "Choose a School...",
