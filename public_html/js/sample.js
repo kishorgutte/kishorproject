@@ -64,23 +64,23 @@ function YouTubeGetID(url) {
 $(document).ready(function () {
     viewmodel = new viewmodeldata();
     viewmodel.init();
-    
-$(".ui-autocomplete").css({"z-index":"1052"});
-$(".youtubesearchfield").autocomplete({
-        source: function(request, response) {
+
+    $(".ui-autocomplete").css({"z-index": "1052"});
+    $(".youtubesearchfield").autocomplete({
+        source: function (request, response) {
             $.getJSON("http://suggestqueries.google.com/complete/search?callback=?",
-                { 
-                  "hl":"en", // Language
-                  "ds":"yt", // Restrict lookup to youtube
-                  "jsonp":"suggestCallBack", // jsonp callback function name
-                  "q":$(".youtubesearchfield").val(), // query term
-                  "client":"youtube" // force youtube style response, i.e. jsonp
-                }
+                    {
+                        "hl": "en", // Language
+                        "ds": "yt", // Restrict lookup to youtube
+                        "jsonp": "suggestCallBack", // jsonp callback function name
+                        "q": $(".youtubesearchfield").val(), // query term
+                        "client": "youtube" // force youtube style response, i.e. jsonp
+                    }
             );
             suggestCallBack = function (data) {
                 var suggestions = [];
-                $.each(data[1], function(key, val) {
-                    suggestions.push({"value":val[0]});
+                $.each(data[1], function (key, val) {
+                    suggestions.push({"value": val[0]});
                 });
                 suggestions.length = 10; // prune suggestions list to only 5 items
                 response(suggestions);
@@ -99,6 +99,7 @@ var viewmodeldata = function () {
     self.youtubesearchedlist = ko.observableArray();
     self.responseresult = ko.observableArray([]);
     self.tempplaylist = ko.observableArray();
+    self.templistlength = ko.observable();
     self.showvideo = function () {
         // $("#player").show();
     };
@@ -136,7 +137,7 @@ var viewmodeldata = function () {
             type: "video",
             safeSearch: "strict",
             q: encodeURIComponent($(".youtubesearchfield").val()).replace(/%20/g, "+"),
-            maxResults: 16,
+            maxResults: 50,
             order: "viewCount",
         });
 
@@ -147,25 +148,52 @@ var viewmodeldata = function () {
             });
         });
     };
-    self.makemodalready=function (){
-     $(".ui-autocomplete").css({"z-index":"1052"});  
-     $(".youtubesearchfield").val("t series latest");
-     $("#goforsearch").trigger("click");
-     $(".youtubesearchfield").val("");
+    self.makemodalready = function () {
+
+        $(".ui-autocomplete").css({"z-index": "1052"});
+        
+        if (self.tempplaylist().length === 0) {
+            self.templistlength(0);
+            $(".youtubesearchfield").val("top 100 songs of  Bollywood 2015");
+            $("#goforsearch").trigger("click");
+            $(".youtubesearchfield").val("");
+        }
     },
-    self.init = function ()
-    {
-        ko.applyBindings(self);
+            self.init = function () {
+                ko.applyBindings(self);
+            };
+
+    self.addvideotemplist = function () {
+         $("#PlayAddedVideo").attr("disabled", false);
+         $("#addvideotemplist").attr("disabled", true);
+        var temp = self.tempplaylist().length;
+        
+        for (var i = 0; i < $(".searchedcheckbox input:checked").length; i++) {
+            
+                self.tempplaylist().push($(".searchedcheckbox input:checked")[i].value);
+        }
+        if (temp > 0) {
+            self.tempplaylist().reverse();
+        }
+        self.templistlength(self.tempplaylist().length);
+        $(".searchedcheckbox input").prop("checked",false);
     };
-    
-    self.addvideotemplist = function (){
-        $("#PlayAddedVideo").attr("disabled",false);
-        //self.tempplaylist().push();
+    self.PlayAddedVideo = function () {
+        $("#PlayAddedVideo").attr("disabled", true);
+        player.loadPlaylist(self.tempplaylist());
     };
-    self.PlayAddedVideo = function (){
-        $("#PlayAddedVideo").attr("disabled",true);
-        //player.loadPlaylist(self.tempplaylist());
-    };
+    self.renderhandler = function (element, data) {
+        if ($('#mycontainerid').children().length == 16) {
+            $(".searchedcheckbox input").click(function () {
+                $("#addvideotemplist").attr("disabled", false);
+
+                if ($(".searchedcheckbox input:checked").length == 0) {
+                    $("#addvideotemplist").attr("disabled", true);
+                }
+            })
+
+        }
+    }
 };
 
 $.getJSON("Hindivideolist.json", function (data) {
@@ -173,6 +201,7 @@ $.getJSON("Hindivideolist.json", function (data) {
         viewmodel.Hindivideolist.push(YouTubeGetID(data.url[i]));
         viewmodel.videolistmix.push(YouTubeGetID(data.url[i]));
     }
+    viewmodel.Hindivideolist.reverse();
 });
 $.getJSON("Englishvideolist.json", function (data) {
     for (var i = 0; i < data.url.length; i++) {
@@ -219,16 +248,6 @@ $('#catagories :checkbox').click(function () {
 
 });
 
-$(".cr-icon").click(function (){
-  $("#PlayAddedVideo").attr("disabled",false);
-    
-});
-
-$(".cr-icon").on("click",function (){
-  $("#PlayAddedVideo").attr("disabled",false);
-   
-});
-
 function FormatToDisplay(item) {
 
     var temp = item.snippet.title;
@@ -248,8 +267,9 @@ function FormatToDisplay(item) {
         player.loadVideoById(data.videoId);
         player.setPlaybackQuality("small");
     };
-
-
+    this.closecurrentdiv = function (data) {
+       viewmodel.youtubesearchedlist.remove(data);
+    };
 }
 ;
 
@@ -267,6 +287,7 @@ function init() {
     });
 }
 ;
+
 
 //ko.bindingHandlers.kendoDropDownList.options={
 //    optionLabel : "Choose a School...",

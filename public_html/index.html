@@ -102,7 +102,7 @@ and open the template in the editor.
                             <div class="col-lg-6 col-md-6 col-sm-4  col-xs-2">
                                 <div class="row">
                                     <div class="col-lg-4 col-md-4 col-sm-4  col-xs-6">    
-                                        <button type="button"  id="addvideotemplist" class="btn btn-primary"  data-bind="click: addvideotemplist" disabled="true"><span class="glyphicon glyphicon-plus"></span>  Add</button>
+                                        <button type="button"  id="addvideotemplist" class="btn btn-primary"  data-bind="click: addvideotemplist" disabled="true"><span class="glyphicon glyphicon-plus"></span>  Add  <span class="badge" data-bind="text:templistlength "></span></button>
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-sm-4  col-xs-6">   
                                         <button type="button" id="PlayAddedVideo" class="btn btn-primary"  data-bind="click : PlayAddedVideo" disabled="true"><span class="glyphicon glyphicon-play"></span>  Play   </button>
@@ -121,9 +121,10 @@ and open the template in the editor.
                         </div><!-- /.row href:youtubelink,-->
                     </div>
                     <div class="modal-body">
-                        <div class="row" data-bind="foreach:youtubesearchedlist">
-                            <div class="col-xs-6 col-md-3">
-                                <a  data-bind="attr:{title:title},"  class="thumbnail myclass">
+                        <div class="row" id="mycontainerid" data-bind="foreach:{data:youtubesearchedlist,afterRender: renderhandler}">
+                            <div class="col-xs-4 col-md-3">
+                                <a data-bind="attr:{title:title},"  class="thumbnail">
+                                    <span data-bind="click:closecurrentdiv " id="closebutton" class="glyphicon glyphicon-remove"></span>
                                     <span class="checkbox align-right searchedcheckbox">
                                         <label class="pull-right">
                                             <input type="checkbox" data-bind="attr:{value:videoId}">
