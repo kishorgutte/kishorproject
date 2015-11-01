@@ -169,14 +169,21 @@ var viewmodeldata = function () {
         var temp = self.tempplaylist().length;
         
         for (var i = 0; i < $(".searchedcheckbox input:checked").length; i++) {
-            
-                self.tempplaylist().push($(".searchedcheckbox input:checked")[i].value);
+                var id=$(".searchedcheckbox input:checked")[i].value;
+                var itempresent=false;
+                for(var j=0;j<temp;j++){
+                    if(id==self.tempplaylist()[j]){
+                      itempresent=true;  
+                    }
+                }
+                if(itempresent==false){
+                    self.tempplaylist().push(id)
+                }
         }
         if (temp > 0) {
             self.tempplaylist().reverse();
         }
         self.templistlength(self.tempplaylist().length);
-        $(".searchedcheckbox input").prop("checked",false);
     };
     self.PlayAddedVideo = function () {
         $("#PlayAddedVideo").attr("disabled", true);
