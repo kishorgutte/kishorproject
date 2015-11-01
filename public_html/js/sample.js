@@ -7,6 +7,7 @@ var tag = document.createElement('script');
 var player;
 var totalcount = 0;
 var viewmodel;
+var kendodatasource;
 tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
@@ -25,8 +26,8 @@ function onYouTubeIframeAPIReady() {
 }
 // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
-    //player.loadPlaylist(self.Hindivideolist());
-    player.loadPlaylist(viewmodel.Englishvideolist());
+    player.loadPlaylist(viewmodel.Hindivideolist());
+    //player.loadPlaylist(viewmodel.Englishvideolist());
 
     player.setShuffle(true);
     player.setLoop(true);
@@ -63,6 +64,29 @@ function YouTubeGetID(url) {
 $(document).ready(function () {
     viewmodel = new viewmodeldata();
     viewmodel.init();
+    
+$(".ui-autocomplete").css({"z-index":"1052"});
+$(".youtubesearchfield").autocomplete({
+        source: function(request, response) {
+            $.getJSON("http://suggestqueries.google.com/complete/search?callback=?",
+                { 
+                  "hl":"en", // Language
+                  "ds":"yt", // Restrict lookup to youtube
+                  "jsonp":"suggestCallBack", // jsonp callback function name
+                  "q":$(".youtubesearchfield").val(), // query term
+                  "client":"youtube" // force youtube style response, i.e. jsonp
+                }
+            );
+            suggestCallBack = function (data) {
+                var suggestions = [];
+                $.each(data[1], function(key, val) {
+                    suggestions.push({"value":val[0]});
+                });
+                suggestions.length = 10; // prune suggestions list to only 5 items
+                response(suggestions);
+            };
+        },
+    });
 });
 
 var viewmodeldata = function () {
@@ -72,8 +96,9 @@ var viewmodeldata = function () {
     self.Hindivideolist = ko.observableArray();
     self.Englishvideolist = ko.observableArray();
     self.videolistmix = ko.observableArray();
-    self.youtubesearchedlist = ko.observableArray()
-
+    self.youtubesearchedlist = ko.observableArray();
+    self.responseresult = ko.observableArray([]);
+    self.tempplaylist = ko.observableArray();
     self.showvideo = function () {
         // $("#player").show();
     };
@@ -122,11 +147,25 @@ var viewmodeldata = function () {
             });
         });
     };
+    self.makemodalready=function (){
+     $(".ui-autocomplete").css({"z-index":"1052"});  
+     $(".youtubesearchfield").val("t series latest");
+     $("#goforsearch").trigger("click");
+     $(".youtubesearchfield").val("");
+    },
+    self.init = function ()
+    {
+        ko.applyBindings(self);
+    };
     
-     self.init = function ()
-            {
-                ko.applyBindings(self);
-            };
+    self.addvideotemplist = function (){
+        $("#PlayAddedVideo").attr("disabled",false);
+        //self.tempplaylist().push();
+    };
+    self.PlayAddedVideo = function (){
+        $("#PlayAddedVideo").attr("disabled",true);
+        //player.loadPlaylist(self.tempplaylist());
+    };
 };
 
 $.getJSON("Hindivideolist.json", function (data) {
@@ -144,7 +183,7 @@ $.getJSON("Englishvideolist.json", function (data) {
 
 $('#catagories :checkbox').click(function () {
     var $this = $(this);
-    if ($("input:checkbox:checked").length === 1) {
+    if ($("#catagories input:checkbox:checked").length === 1) {
 
         if ($this.is(':checked')) {
             if (this.value == "hindi") {
@@ -168,16 +207,26 @@ $('#catagories :checkbox').click(function () {
         }
     }
 
-    if ($("input:checkbox:checked").length === 2) {
+    if ($("#catagories input:checkbox:checked").length === 2) {
         player.loadPlaylist(viewmodel.videolistmix());
         player.setShuffle(true);
     }
-    if ($("input:checkbox:checked").length === 0) {
+    if ($("#catagories input:checkbox:checked").length === 0) {
         alert("Please select one categories otherwise default categories will be played")
         player.loadPlaylist(viewmodel.Hindivideolist());
         player.setShuffle(true);
     }
 
+});
+
+$(".cr-icon").click(function (){
+  $("#PlayAddedVideo").attr("disabled",false);
+    
+});
+
+$(".cr-icon").on("click",function (){
+  $("#PlayAddedVideo").attr("disabled",false);
+   
 });
 
 function FormatToDisplay(item) {
@@ -199,22 +248,25 @@ function FormatToDisplay(item) {
         player.loadVideoById(data.videoId);
         player.setPlaybackQuality("small");
     };
-    
-    
-};
+
+
+}
+;
 
 $(".youtubesearchfield").keypress(function (event) {
     if (event.which == 13) {
         $("#goforsearch").trigger("click");
     }
+
 });
 
- function init () {
+function init() {
     gapi.client.setApiKey("AIzaSyAqLM3LNORiFcgNv7UykOACQl82Rr4f2B4");
     gapi.client.load("youtube", "v3", function () {
         console.log("Youtube Api is ready");
     });
-  };
+}
+;
 
 //ko.bindingHandlers.kendoDropDownList.options={
 //    optionLabel : "Choose a School...",
