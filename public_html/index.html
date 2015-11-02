@@ -100,14 +100,8 @@ and open the template in the editor.
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-4  col-xs-2">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-sm-4  col-xs-6">    
-                                        <button type="button"  id="addvideotemplist" class="btn btn-primary"  data-bind="click: addvideotemplist" disabled="true"><span class="glyphicon glyphicon-plus"></span>  Add  <span class="badge" data-bind="text:templistlength "></span></button>
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 col-sm-4  col-xs-6">   
-                                        <button type="button" id="PlayAddedVideo" class="btn btn-primary"  data-bind="click : PlayAddedVideo" disabled="true"><span class="glyphicon glyphicon-play"></span>  Play   </button>
-                                        
-                                    </div>
+                                <div >
+                                    <button type="button"  id="addvideotemplist" class="btn btn-primary text-center center-block"  data-bind="click: addvideotemplist"><span id="songsbutton">Songs  </span><span class="badge" data-bind="text:templistlength "></span></button>
                                 </div>
                             </div><!-- /.col-lg-6 -->
                             <div class="col-lg-6 col-md-6 col-sm-8 col-xs-10">
@@ -121,16 +115,12 @@ and open the template in the editor.
                         </div><!-- /.row href:youtubelink,-->
                     </div>
                     <div class="modal-body">
-                        <div class="row" id="mycontainerid" data-bind="foreach:{data:youtubesearchedlist,afterRender: renderhandler}">
+                        <div class="row" id="mycontainerid" data-bind="foreach:{data:youtubesearchedlist}">
                             <div class="col-xs-6 col-md-3">
                                 <a data-bind="attr:{title:title},"  class="thumbnail">
                                     <span data-bind="click:closecurrentdiv " id="closebutton" class="glyphicon glyphicon-remove"></span>
-                                    <span class="checkbox align-right searchedcheckbox">
-                                        <label class="pull-right">
-                                            <input type="checkbox" data-bind="attr:{value:videoId}">
-                                            <span class="cr " style="margin-right: 0px;font-size: initial;margin-bottom: 2px;"><i class="cr-icon glyphicon glyphicon glyphicon glyphicon-ok"></i></span>
-                                        </label>
-                                    </span>
+                                    <span  data-bind="attr:{id:videoId},click:playaddedsongs "class="glyphicon glyphicon-plus pull-right"></span>
+                                    <span  data-bind="attr:{id:'ok'+videoId}"class="glyphicon glyphicon-ok pull-right" style="display: none"></span>
                                     <img data-bind="click:playselectedvideo,attr:{src:videothumbnail},">
                                     <div class="resultTitle" data-bind="click:playselectedvideo,text:ellipsedtitle"></div>
                                 </a>

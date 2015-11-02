@@ -7,8 +7,19 @@ and open the template in the editor.
     Created on : Oct 15, 2015, 2:45:30 PM
     Author     : Kishor Gutte
 */
-#closebutton{
-    
+
+@media (min-width: 430px){
+   #songsbutton {
+        display: initial;
+    }  
+}
+@media (max-width: 430px){
+   #songsbutton {
+        display: none;
+    }  
+}
+#addvideotemplist{
+    margin-top: 19px;
 }
 #mycontainerid .thumbnail:hover{
     cursor: pointer;
@@ -125,3 +136,4 @@ Adding css or checkbox
 .radio label input[type="radio"]:disabled + .cr {
     opacity: .5;
 }
+

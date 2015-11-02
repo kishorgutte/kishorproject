@@ -38,6 +38,10 @@ function onPlayerReady(event) {
 //    the player should play for six seconds and then stop.
 function onPlayerStateChange(event) {
     if (event.data == YT.PlayerState.ENDED) {
+        if (viewmodel.templistmode()) {
+         viewmodel.currentsongsindex(viewmodel.currentsongsindex()+1);
+         player.loadVideoById(viewmodel.tempplaylist()[viewmodel.currentsongsindex()]);
+        }
     }
     if (event.data == YT.PlayerState.PAUSED) {
         $("#playvideo").show();
@@ -100,14 +104,27 @@ var viewmodeldata = function () {
     self.responseresult = ko.observableArray([]);
     self.tempplaylist = ko.observableArray();
     self.templistlength = ko.observable();
+    self.templistmode = ko.observable(false);
+    self.currentsongsindex = ko.observable(0);
     self.showvideo = function () {
         // $("#player").show();
     };
     self.nextvideo = function () {
-        player.nextVideo();
+        if(self.templistmode){
+         self.currentsongsindex(self.currentsongsindex()+1);
+         player.loadVideoById(self.tempplaylist()[self.currentsongsindex()]);
+        }else{
+             player.nextVideo();
+        }  
     };
     self.previousvideo = function () {
-        player.previousVideo();
+        if(self.templistmode){
+         self.currentsongsindex(self.currentsongsindex()-1);
+         player.loadVideoById(self.tempplaylist()[self.currentsongsindex()]);
+        }else{
+            player.previousVideo();
+        }  
+        
     };
     self.Playvideo = function () {
         $("#pausevideo").show();
@@ -151,7 +168,7 @@ var viewmodeldata = function () {
     self.makemodalready = function () {
 
         $(".ui-autocomplete").css({"z-index": "1052"});
-        
+
         if (self.tempplaylist().length === 0) {
             self.templistlength(0);
             $(".youtubesearchfield").val("top 100 songs of  Bollywood 2015");
@@ -163,44 +180,19 @@ var viewmodeldata = function () {
                 ko.applyBindings(self);
             };
 
-    self.addvideotemplist = function () {
-         $("#PlayAddedVideo").attr("disabled", false);
-         $("#addvideotemplist").attr("disabled", true);
-        var temp = self.tempplaylist().length;
-        
-        for (var i = 0; i < $(".searchedcheckbox input:checked").length; i++) {
-                var id=$(".searchedcheckbox input:checked")[i].value;
-                var itempresent=false;
-                for(var j=0;j<temp;j++){
-                    if(id==self.tempplaylist()[j]){
-                      itempresent=true;  
-                    }
-                }
-                if(itempresent==false){
-                    self.tempplaylist().push(id)
-                }
-        }
-        if (temp > 0) {
-            self.tempplaylist().reverse();
-        }
-        self.templistlength(self.tempplaylist().length);
-    };
-    self.PlayAddedVideo = function () {
-        $("#PlayAddedVideo").attr("disabled", true);
-        player.loadPlaylist(self.tempplaylist());
-    };
-    self.renderhandler = function (element, data) {
-        if ($('#mycontainerid').children().length == 16) {
-            $(".searchedcheckbox input").click(function () {
-                $("#addvideotemplist").attr("disabled", false);
+//    self.renderhandler = function (element, data) {
+//        if ($('#mycontainerid').children().length == 16) {
+//            $(".searchedcheckbox input").click(function () {
+//                $("#addvideotemplist").attr("disabled", false);
+//
+//                if ($(".searchedcheckbox input:checked").length == 0) {
+//                    $("#addvideotemplist").attr("disabled", true);
+//                }
+//            })
+//
+//        }
+//    }
 
-                if ($(".searchedcheckbox input:checked").length == 0) {
-                    $("#addvideotemplist").attr("disabled", true);
-                }
-            })
-
-        }
-    }
 };
 
 $.getJSON("Hindivideolist.json", function (data) {
@@ -275,7 +267,30 @@ function FormatToDisplay(item) {
         player.setPlaybackQuality("small");
     };
     this.closecurrentdiv = function (data) {
-       viewmodel.youtubesearchedlist.remove(data);
+        viewmodel.youtubesearchedlist.remove(data);
+    };
+    this.playaddedsongs = function (data) {
+        $("#" + data.videoId).hide();
+        $("#ok" + data.videoId).show();
+        var temp = viewmodel.tempplaylist().length;
+        var id = data.videoId;
+        var itempresent = false;
+        for (var j = 0; j < temp; j++) {
+            if (id == viewmodel.tempplaylist()[j]) {
+                itempresent = true;
+            }
+        }
+        if (itempresent == false) {
+            viewmodel.tempplaylist().push(id)
+        }
+
+        if (temp === 0) {
+            player.loadVideoById(id);
+            viewmodel.templistmode(true);
+            viewmodel.currentsongsindex(0);
+        }
+
+        viewmodel.templistlength(viewmodel.tempplaylist().length);
     };
 }
 ;
