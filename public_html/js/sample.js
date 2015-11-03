@@ -215,19 +215,23 @@ $('#catagories :checkbox').click(function () {
 
         if ($this.is(':checked')) {
             if (this.value == "hindi") {
+				viewmodel.templistmode(false);
                 player.loadPlaylist(viewmodel.Hindivideolist());
                 player.setShuffle(true);
             }
             if (this.value == "english") {
+				viewmodel.templistmode(false);
                 player.loadPlaylist(viewmodel.Englishvideolist());
                 player.setShuffle(true);
             }
         } else {
             if (this.value == "hindi") {
+				viewmodel.templistmode(false);
                 player.loadPlaylist(viewmodel.Englishvideolist());
                 player.setShuffle(true);
             }
             if (this.value == "english") {
+				viewmodel.templistmode(false);
                 player.loadPlaylist(viewmodel.Hindivideolist());
                 player.setShuffle(true);
             }
