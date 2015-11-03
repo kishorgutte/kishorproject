@@ -90,7 +90,11 @@ $(document).ready(function () {
                 response(suggestions);
             };
         },
+        select: function (event, ui) {
+            $("#goforsearch").trigger("click");
+        },
     });
+    
 });
 
 var viewmodeldata = function () {
@@ -267,7 +271,7 @@ function FormatToDisplay(item) {
     this.videothumbnail = item.snippet.thumbnails.medium.url;
     this.youtubelink = "https://www.youtube.com/watch?v=" + this.videoId;
     this.playselectedvideo = function (data) {
-        viewmodel.templistmode(true);
+        viewmodel.templistmode(false);
         player.loadVideoById(data.videoId);
         player.setPlaybackQuality("small");
     };
@@ -288,13 +292,17 @@ function FormatToDisplay(item) {
         if (itempresent == false) {
             viewmodel.tempplaylist().push(id)
         }
-
         if (temp === 0) {
             player.loadVideoById(id);
             viewmodel.templistmode(true);
             viewmodel.currentsongsindex(0);
         }
-
+        viewmodel.templistlength(viewmodel.tempplaylist().length);
+    };
+    this.removefromtemplist = function (data) {
+        $("#" + data.videoId).show();
+        $("#ok" + data.videoId).hide();
+        viewmodel.tempplaylist.remove(data.videoId);
         viewmodel.templistlength(viewmodel.tempplaylist().length);
     };
 }
