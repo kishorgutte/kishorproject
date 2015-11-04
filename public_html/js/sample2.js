@@ -4,3 +4,11 @@
  * and open the template in the editor.
  */
 
+$("#carousel").Cloud9Carousel( {
+  buttonLeft: $("#buttons > .left"),
+  buttonRight: $("#buttons > .right"),
+  autoPlay: 0,
+  bringToFront: true
+} );
+
+$("#carousel").css({"overflow":"visible"})

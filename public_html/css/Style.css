@@ -7,7 +7,10 @@ and open the template in the editor.
     Created on : Oct 15, 2015, 2:45:30 PM
     Author     : Kishor Gutte
 */
-
+p {
+    
+    text-align: center;
+}
 @media (min-width: 670px){
    #songsbutton {
         display: initial;
@@ -141,10 +144,6 @@ Adding css or checkbox
 /*
 Adding css for carousal
 */
-.carousel-inner .active.left  { left: -33%;             }
-.carousel-inner .active.right { left: 33%;              }
-.carousel-inner .next         { left: 33%               }
-.carousel-inner .prev         { left: -33%              }
-.carousel-control.left        { background-image: none; }
-.carousel-control.right       { background-image: none; }
-.carousel-inner .item         { background: white;      }
+#carousel .cloud9-item, #buttons button {
+  cursor: pointer;
+}
