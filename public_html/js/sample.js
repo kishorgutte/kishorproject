@@ -182,7 +182,6 @@ var viewmodeldata = function () {
 
 
     self.playcatagories1 = function () {
-
         player.loadPlaylist(viewmodel.Hindivideolist());
         player.setShuffle(true);
     };
