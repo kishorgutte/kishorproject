@@ -17,7 +17,7 @@ function onYouTubeIframeAPIReady() {
         height: '480',
         width: '854',
         videoId: 'R8rNw0bGOBA',
-        playerVars: {'autoplay': 0},
+        playerVars: {'autoplay': 1},
         events: {
             'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
@@ -39,8 +39,8 @@ function onPlayerReady(event) {
 function onPlayerStateChange(event) {
     if (event.data == YT.PlayerState.ENDED) {
         if (viewmodel.templistmode()) {
-         viewmodel.currentsongsindex(viewmodel.currentsongsindex()+1);
-         player.loadVideoById(viewmodel.tempplaylist()[viewmodel.currentsongsindex()]);
+            viewmodel.currentsongsindex(viewmodel.currentsongsindex() + 1);
+            player.loadVideoById(viewmodel.tempplaylist()[viewmodel.currentsongsindex()]);
         }
     }
     if (event.data == YT.PlayerState.PAUSED) {
@@ -110,21 +110,21 @@ var viewmodeldata = function () {
         // $("#player").show();
     };
     self.nextvideo = function () {
-        if(self.templistmode){
-         self.currentsongsindex(self.currentsongsindex()+1);
-         player.loadVideoById(self.tempplaylist()[self.currentsongsindex()]);
-        }else{
-             player.nextVideo();
-        }  
+        if (self.templistmode) {
+            self.currentsongsindex(self.currentsongsindex() + 1);
+            player.loadVideoById(self.tempplaylist()[self.currentsongsindex()]);
+        } else {
+            player.nextVideo();
+        }
     };
     self.previousvideo = function () {
-        if(self.templistmode){
-         self.currentsongsindex(self.currentsongsindex()-1);
-         player.loadVideoById(self.tempplaylist()[self.currentsongsindex()]);
-        }else{
+        if (self.templistmode) {
+            self.currentsongsindex(self.currentsongsindex() - 1);
+            player.loadVideoById(self.tempplaylist()[self.currentsongsindex()]);
+        } else {
             player.previousVideo();
-        }  
-        
+        }
+
     };
     self.Playvideo = function () {
         $("#pausevideo").show();
@@ -151,11 +151,11 @@ var viewmodeldata = function () {
 
         var request = gapi.client.youtube.search.list({
             part: "snippet",
-            type: "video",
             safeSearch: "strict",
             q: encodeURIComponent($(".youtubesearchfield").val()).replace(/%20/g, "+"),
             maxResults: 50,
-            order: "viewCount",
+            order: "relevance",
+            regionCode: "IN"
         });
 
         request.execute(function (response) {
@@ -215,23 +215,23 @@ $('#catagories :checkbox').click(function () {
 
         if ($this.is(':checked')) {
             if (this.value == "hindi") {
-				viewmodel.templistmode(false);
+                viewmodel.templistmode(false);
                 player.loadPlaylist(viewmodel.Hindivideolist());
                 player.setShuffle(true);
             }
             if (this.value == "english") {
-				viewmodel.templistmode(false);
+                viewmodel.templistmode(false);
                 player.loadPlaylist(viewmodel.Englishvideolist());
                 player.setShuffle(true);
             }
         } else {
             if (this.value == "hindi") {
-				viewmodel.templistmode(false);
+                viewmodel.templistmode(false);
                 player.loadPlaylist(viewmodel.Englishvideolist());
                 player.setShuffle(true);
             }
             if (this.value == "english") {
-				viewmodel.templistmode(false);
+                viewmodel.templistmode(false);
                 player.loadPlaylist(viewmodel.Hindivideolist());
                 player.setShuffle(true);
             }
@@ -267,6 +267,7 @@ function FormatToDisplay(item) {
     this.videothumbnail = item.snippet.thumbnails.medium.url;
     this.youtubelink = "https://www.youtube.com/watch?v=" + this.videoId;
     this.playselectedvideo = function (data) {
+        viewmodel.templistmode(true);
         player.loadVideoById(data.videoId);
         player.setPlaybackQuality("small");
     };
