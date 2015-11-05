@@ -15,7 +15,8 @@
     background-image:url('background.png');
     background-position: center;
     width:100%;/* This makes wrapper scale vertically in proportion to width */
-    height: 20px !important;
+    
+/* height: 20px !important; */
     padding-bottom:35%;
 }
 .kc-horizon {

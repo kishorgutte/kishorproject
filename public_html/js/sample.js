@@ -12,27 +12,27 @@ tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-//function onYouTubeIframeAPIReady() {
-//    player = new YT.Player('player', {
-//        height: '480',
-//        width: '854',
-//        videoId: 'R8rNw0bGOBA',
-//        playerVars: {'autoplay': 1},
-//        events: {
-//            'onReady': onPlayerReady,
-//            'onStateChange': onPlayerStateChange
-//        }
-//    });
-//}
-//// 4. The API will call this function when the video player is ready.
-//function onPlayerReady(event) {
-//    player.loadPlaylist(viewmodel.Hindivideolist());
-//    //player.loadPlaylist(viewmodel.Englishvideolist());
-//
-//    player.setShuffle(true);
-//    player.setLoop(true);
-//    //event.target.playVideo();
-//}
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+        height: '480',
+        width: '854',
+        videoId: 'R8rNw0bGOBA',
+        playerVars: {'autoplay': 1},
+        events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+        }
+    });
+}
+// 4. The API will call this function when the video player is ready.
+function onPlayerReady(event) {
+    player.loadPlaylist(viewmodel.Hindivideolist());
+    //player.loadPlaylist(viewmodel.Englishvideolist());
+
+    player.setShuffle(true);
+    player.setLoop(true);
+    //event.target.playVideo();
+}
 // 5. The API calls this function when the player's state changes.
 //    The function indicates that when playing a video (state=1),
 //    the player should play for six seconds and then stop.
@@ -94,7 +94,7 @@ $(document).ready(function () {
             $("#goforsearch").trigger("click");
         },
     });
-    
+
 });
 
 var viewmodeldata = function () {
@@ -103,7 +103,6 @@ var viewmodeldata = function () {
     self.isvideohidden = ko.observable(true);
     self.Hindivideolist = ko.observableArray();
     self.Englishvideolist = ko.observableArray();
-    self.videolistmix = ko.observableArray();
     self.youtubesearchedlist = ko.observableArray();
     self.responseresult = ko.observableArray([]);
     self.tempplaylist = ko.observableArray();
@@ -184,75 +183,65 @@ var viewmodeldata = function () {
                 ko.applyBindings(self);
             };
 
-//    self.renderhandler = function (element, data) {
-//        if ($('#mycontainerid').children().length == 16) {
-//            $(".searchedcheckbox input").click(function () {
-//                $("#addvideotemplist").attr("disabled", false);
-//
-//                if ($(".searchedcheckbox input:checked").length == 0) {
-//                    $("#addvideotemplist").attr("disabled", true);
-//                }
-//            })
-//
-//        }
-//    }
+
+    self.playcatagories1 = function () {
+
+        player.loadPlaylist(viewmodel.Hindivideolist());
+        player.setShuffle(true);
+    };
+    self.playcatagories2 = function () {
+        player.loadPlaylist(viewmodel.Englishvideolist());
+        player.setShuffle(true);
+
+    };
+    self.playcatagories3 = function () {
+        player.loadPlaylist(viewmodel.Hindivideolist());
+        player.setShuffle(true);
+
+    };
+    self.playcatagories4 = function () {
+
+        player.loadPlaylist(viewmodel.Hindivideolist());
+        player.setShuffle(true);
+    };
+    self.playcatagories5 = function () {
+        player.loadPlaylist(viewmodel.Hindivideolist());
+        player.setShuffle(true);
+
+    };
+    self.playcatagories6 = function () {
+
+        player.loadPlaylist(viewmodel.Hindivideolist());
+        player.setShuffle(true);
+    };
+    self.playcatagories7 = function () {
+        player.loadPlaylist(viewmodel.Hindivideolist());
+        player.setShuffle(true);
+
+    };
+    self.playcatagories8 = function () {
+
+        player.loadPlaylist(viewmodel.Hindivideolist());
+        player.setShuffle(true);
+    };
+    self.playcatagories9 = function () {
+        player.loadPlaylist(viewmodel.Hindivideolist());
+        player.setShuffle(true);
+
+    };
 
 };
 
 $.getJSON("Hindivideolist.json", function (data) {
     for (var i = 0; i < data.url.length; i++) {
         viewmodel.Hindivideolist.push(YouTubeGetID(data.url[i]));
-        viewmodel.videolistmix.push(YouTubeGetID(data.url[i]));
     }
     viewmodel.Hindivideolist.reverse();
 });
 $.getJSON("Englishvideolist.json", function (data) {
     for (var i = 0; i < data.url.length; i++) {
         viewmodel.Englishvideolist.push(YouTubeGetID(data.url[i]));
-        viewmodel.videolistmix.push(YouTubeGetID(data.url[i]));
     }
-});
-
-$('#catagories :checkbox').click(function () {
-    var $this = $(this);
-    if ($("#catagories input:checkbox:checked").length === 1) {
-
-        if ($this.is(':checked')) {
-            if (this.value == "hindi") {
-                viewmodel.templistmode(false);
-                player.loadPlaylist(viewmodel.Hindivideolist());
-                player.setShuffle(true);
-            }
-            if (this.value == "english") {
-                viewmodel.templistmode(false);
-                player.loadPlaylist(viewmodel.Englishvideolist());
-                player.setShuffle(true);
-            }
-        } else {
-            if (this.value == "hindi") {
-                viewmodel.templistmode(false);
-                player.loadPlaylist(viewmodel.Englishvideolist());
-                player.setShuffle(true);
-            }
-            if (this.value == "english") {
-                viewmodel.templistmode(false);
-                player.loadPlaylist(viewmodel.Hindivideolist());
-                player.setShuffle(true);
-            }
-
-        }
-    }
-
-    if ($("#catagories input:checkbox:checked").length === 2) {
-        player.loadPlaylist(viewmodel.videolistmix());
-        player.setShuffle(true);
-    }
-    if ($("#catagories input:checkbox:checked").length === 0) {
-        alert("Please select one categories otherwise default categories will be played")
-        player.loadPlaylist(viewmodel.Hindivideolist());
-        player.setShuffle(true);
-    }
-
 });
 
 function FormatToDisplay(item) {

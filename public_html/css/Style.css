@@ -7,6 +7,12 @@ and open the template in the editor.
     Created on : Oct 15, 2015, 2:45:30 PM
     Author     : Kishor Gutte
 */
+
+
+#idwrapper{
+    
+}
+
 #headerdiv{
     background-image: url("background.png");
 }
@@ -158,13 +164,25 @@ div.kc-horizon + div {
 }
 
 .kc-horizon { 
-/* perspective: none !important;*/
+ perspective: none !important;
 }
 .kc-wrap {
     background-image: none !important;
     padding-bottom: 25% !important;
 }
-.kc-item{
+.kc-item:hover{
 /*    width:100% !important;    
     height:75% !important;*/
+ cursor: pointer;
+
+}
+#imagecenter{
+    position: absolute;
+    text-align: center;
+    bottom: 70px;
+    width: 200px;
+    height: 100px;
+    color: white;
+    font-size: 20px
+    
 }
