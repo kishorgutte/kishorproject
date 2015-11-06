@@ -7,7 +7,14 @@ and open the template in the editor.
     Created on : Oct 15, 2015, 2:45:30 PM
     Author     : Kishor Gutte
 */
-
+#owl-demo .item{
+  margin: 3px;
+}
+#owl-demo .item img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
 @media (min-width: 670px){
    #songsbutton {
         display: initial;

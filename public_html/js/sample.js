@@ -12,28 +12,28 @@ tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {
-        height: '480',
-        width: '854',
-        videoId: 'R8rNw0bGOBA',
-        playerVars: {'autoplay': 1},
-        events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-        }
-    });
-}
-// 4. The API will call this function when the video player is ready.
-function onPlayerReady(event) {
-    player.loadPlaylist(viewmodel.Hindivideolist());
-    //player.loadPlaylist(viewmodel.Englishvideolist());
-
-    player.setShuffle(true);
-    player.setLoop(true);
-    //event.target.playVideo();
-}
-// 5. The API calls this function when the player's state changes.
+//function onYouTubeIframeAPIReady() {
+//    player = new YT.Player('player', {
+//        height: '480',
+//        width: '854',
+//        videoId: 'R8rNw0bGOBA',
+//        playerVars: {'autoplay': 1},
+//        events: {
+//            'onReady': onPlayerReady,
+//            'onStateChange': onPlayerStateChange
+//        }
+//    });
+//}
+//// 4. The API will call this function when the video player is ready.
+//function onPlayerReady(event) {
+//    player.loadPlaylist(viewmodel.Hindivideolist());
+//    //player.loadPlaylist(viewmodel.Englishvideolist());
+//
+//    player.setShuffle(true);
+//    player.setLoop(true);
+//    //event.target.playVideo();
+//}
+//// 5. The API calls this function when the player's state changes.
 //    The function indicates that when playing a video (state=1),
 //    the player should play for six seconds and then stop.
 function onPlayerStateChange(event) {
