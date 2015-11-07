@@ -8,7 +8,11 @@ $("#carousel").Cloud9Carousel( {
   buttonLeft: $("#buttons > .left"),
   buttonRight: $("#buttons > .right"),
   autoPlay: 0,
-  bringToFront: true
+  bringToFront: true,
+  farScale: 0.5, 
+
+  xRadius:400,
+  yRadius:30,
 } );
 
 $("#carousel").css({"overflow":"visible"})
