@@ -7,14 +7,16 @@ and open the template in the editor.
     Created on : Oct 15, 2015, 2:45:30 PM
     Author     : Kishor Gutte
 */
-
+#headerdiv{
+    background-image: url("background.png");
+}
 @media (min-width: 670px){
-   #songsbutton {
+    #songsbutton {
         display: initial;
     }  
 }
 @media (max-width: 670px){
-   #songsbutton {
+    #songsbutton {
         display: none;
     }  
 }
@@ -29,7 +31,7 @@ and open the template in the editor.
 }
 .searchedcheckbox{
     display: inline;
-    
+
 }
 #mediacontrols{
     margin:1%;
@@ -57,7 +59,8 @@ and open the template in the editor.
     font-size: large;
 }
 #catagories {
-    margin-top: 1%
+ margin-top: 1%
+
 }
 .resultTitle{
     max-height: 36px;
@@ -141,10 +144,27 @@ Adding css or checkbox
 /*
 Adding css for carousal
 */
-.carousel-inner .active.left  { left: -33%;             }
-.carousel-inner .active.right { left: 33%;              }
-.carousel-inner .next         { left: 33%               }
-.carousel-inner .prev         { left: -33%              }
-.carousel-control.left        { background-image: none; }
-.carousel-control.right       { background-image: none; }
-.carousel-inner .item         { background: white;      }
+/* CSS for images inside item wrapper */
+.kc-item img {
+    position:absolute;
+    pointer-events: none;   /* Make images non-selectable. */
+    width:100% !important;    
+    height: 75% !important;
+    /* Make images expand to wrapper size (used in 2d modes). */
+}
+
+div.kc-horizon + div {
+    display: none !important;
+}
+
+.kc-horizon { 
+/* perspective: none !important;*/
+}
+.kc-wrap {
+    background-image: none !important;
+    padding-bottom: 25% !important;
+}
+.kc-item{
+/*    width:100% !important;    
+    height:75% !important;*/
+}

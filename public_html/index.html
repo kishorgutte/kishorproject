@@ -14,15 +14,19 @@ and open the template in the editor.
         <link rel="stylesheet" href="css/kendo.rtl.min.css">
         <link rel="stylesheet" href="css/kendo.default.min.css">
         <link href="css/jquery-ui.css" rel="Stylesheet">
+        <link href="css/killercarousel.css" type="text/css" rel="stylesheet" />
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/bootstrap-switch.min.css">
         <link rel="stylesheet" href="css/Style.css">
 
+
+
+
     </head>
     <body>
         <div class="container" id="headerdiv">
-            <div id="mediacontrols">
+            <div class="row" id="mediacontrols">
                 <button type="button" data-toggle="modal" data-target=".youtubemodal" id="showbutton" class="btn btn-primary"  data-bind="click: showvideo"><span class="glyphicon glyphicon-eye-open"></span>  Show</button>
                 <button type="button" id="playvideo" class="btn btn-primary"  data-bind="click : Playvideo"><span class="glyphicon glyphicon-play"></span>  Play   </button>
                 <button type="button" id="pausevideo" class="btn btn-primary"  data-bind="click: Pausevideo"><span class="glyphicon glyphicon-pause"></span>  Pause</button>
@@ -33,31 +37,40 @@ and open the template in the editor.
                 <span class="text-right profile">
                     <img src="images/naruto_profile.jpg" class="img-circle" alt="Naruto " width="50" height="50"> 
                 </span>
-                <div id="catagories"> 
-                    <div class="btn-group">
-                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Catagories <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" value="hindi" checked="true">
-                                        <span class="cr"><i class="cr-icon glyphicon glyphicon glyphicon glyphicon-ok"></i></span>
-                                        Hindi
-                                    </label>
-                                </div>
-                            </li>
-                            <li><div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" value="english">
-                                        <span class="cr"><i class="cr-icon glyphicon glyphicon glyphicon glyphicon-ok"></i></span>
-                                        English
-                                    </label>
-                                </div>
-                            </li>
-                        </ul>
+
+            </div>
+
+
+            <div id="catagories" class="row">
+                <div class="col-md-12  col-lg-12 col-sm-12 col-xs-12">
+                    <div id="kishor">
+                    <div class = "kc-wrap myclass">
+                        <!-- Carousel items follow -->
+                        <div class="kc-item">
+                            <img class="img-circle" src="images/image1.jpg" alt = "Salvator Mundi 1519">
+                        </div>
+                        <div class="kc-item">
+                            <img class="img-circle" src="images/image2.jpg" alt = "St. John the Baptist 1516">
+                        </div> 
+                        <div class="kc-item">
+                            <img class="img-circle" src="images/image1.jpg" alt = "Lady with an Ermine 1490">
+                        </div>
+                        <div class="kc-item">
+                            <img class="img-circle" src="images/image2.jpg" alt = "St. Jerome in the Wilderness 1480">
+                        </div>
+                        <div class="kc-item">
+                            <img class="img-circle" src="images/image1.jpg" alt = "Head of a Woman 1508">
+                        </div>
+                        <div class="kc-item">
+                            <img class="img-circle" src="images/image2.jpg" alt = "St. John the Baptist 1516">
+                        </div>
+                        <div class="kc-item">
+                            <img class="img-circle" src="images/image1.jpg" alt = "The Virgin and Child with St Anne and St John the Baptist 1500">
+                        </div>
+                   
                     </div>
-                </div> 
+                        </div>
+                </div>
 
             </div>
 
@@ -139,6 +152,7 @@ and open the template in the editor.
         <script src="js/kendo.all.min.js"></script>
         <script src="js/knockout-kendo.min.js"></script>
         <script src="js/jquery-ui.js"></script>
+        <script src="js/killercarousel.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/bootstrap-switch.min.js"></script>
         <script src="js/sample.js"></script>
