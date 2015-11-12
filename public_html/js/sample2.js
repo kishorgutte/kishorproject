@@ -19,8 +19,12 @@
                     // Scale at 75% of parent element.
                     autoScale: 75,
                 });
-            });
-            
-           
-            
-            $('.kc-horizon').css({" perspective": "0px"})
+            });           
+ $('.kc-horizon').css({" perspective": "0px"});
+ 
+ 
+ 
+ function backtohome(data){
+     $("#"+$(data).attr("id")).css({"display":"none"});
+     $("#body").css({"display":"initial"});
+ };

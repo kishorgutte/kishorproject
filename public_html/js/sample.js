@@ -12,6 +12,7 @@ tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
+
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
         height: '480',
@@ -26,16 +27,13 @@ function onYouTubeIframeAPIReady() {
 }
 // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
+    getvideolistready();
     player.loadPlaylist(viewmodel.Hindivideolist());
     //player.loadPlaylist(viewmodel.Englishvideolist());
-
     player.setShuffle(true);
     player.setLoop(true);
     //event.target.playVideo();
 }
-// 5. The API calls this function when the player's state changes.
-//    The function indicates that when playing a video (state=1),
-//    the player should play for six seconds and then stop.
 function onPlayerStateChange(event) {
     if (event.data == YT.PlayerState.ENDED) {
         if (viewmodel.templistmode()) {
@@ -52,6 +50,7 @@ function onPlayerStateChange(event) {
         $("#playvideo").hide();
     }
 }
+
 function YouTubeGetID(url) {
     var ID = '';
     url = url.replace(/(>|<)/gi, '').split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
@@ -109,6 +108,15 @@ var viewmodeldata = function () {
     self.templistlength = ko.observable();
     self.templistmode = ko.observable(false);
     self.currentsongsindex = ko.observable(0);
+    self.bollywood90songsReady = ko.observableArray();
+    self.englishsongsReady = ko.observableArray();
+    self.RomanceReady = ko.observableArray();
+    self.DardeDilReady = ko.observableArray();
+    self.RockReady = ko.observableArray();
+    self.ArtistsReady = ko.observableArray();
+    self.WorkoutReady = ko.observableArray();
+    self.RemixDjReady = ko.observableArray();
+    self.MarathiReady = ko.observableArray();
     self.showvideo = function () {
         // $("#player").show();
     };
@@ -183,66 +191,163 @@ var viewmodeldata = function () {
                 ko.applyBindings(self);
             };
 
-
-    self.playcatagories1 = function () {
-
-        player.loadPlaylist(viewmodel.Hindivideolist());
-        player.setShuffle(true);
+    self.bollywood90songs = function () {
+        self.bollywood90songsReady.removeAll();
+        $("#body").css({"display": "none"});
+        $("#bollywood90songs").css({"display": "initial"});
+        $.ajax({
+            method: 'get',
+            url: "https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
+            dataType: "json",
+            data: {video_ids: "OulN7vTDq1I,UR3_vsWHrqw,DrwU9OgJjW8,R8rNw0bGOBA,o_LtQR-l3K0,qE3DfF66DNA"}
+        })
+                .done(function (data) {
+                    for (var i = 0; i < data.video.length; i++)
+                    {
+                        self.bollywood90songsReady.push(new FormatToCategories(data.video[i]));
+                    }
+                })
     };
-    self.playcatagories2 = function () {
-        player.loadPlaylist(viewmodel.Englishvideolist());
-        player.setShuffle(true);
+    self.englishsongs = function () {
+        self.englishsongsReady.removeAll();
+        $("#body").css({"display": "none"});
+        $("#englishsongs").css({"display": "initial"});
+        $.ajax({
+            method: 'get',
+            url: "https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
+            dataType: "json",
+            data: {video_ids: "3x2ABSAMVno,t4H_Zoh7G5A,SmM0653YvXU,EPo5wWmKEaI,_Z5-P9v3F8w,uelHwf8o7_U"}
+        })
+                .done(function (data) {
+                    for (var i = 0; i < data.video.length; i++)
+                    {
+                        self.englishsongsReady.push(new FormatToCategories(data.video[i]));
+                    }
+                });
+    };
+    self.Romance = function () {
+        self.RomanceReady.removeAll();
+        $("#body").css({"display": "none"});
+        $("#romance").css({"display": "initial"});
+        $.ajax({
+            method: 'get',
+            url: "https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
+            dataType: "json",
+            data: {video_ids: "3x2ABSAMVno,t4H_Zoh7G5A,SmM0653YvXU,EPo5wWmKEaI,_Z5-P9v3F8w,uelHwf8o7_U"}
+        })
+                .done(function (data) {
+                    for (var i = 0; i < data.video.length; i++)
+                    {
+                        self.RomanceReady.push(new FormatToCategories(data.video[i]));
+                    }
+                })
 
     };
-    self.playcatagories3 = function () {
-        player.loadPlaylist(viewmodel.Hindivideolist());
-        player.setShuffle(true);
+    self.dardedil = function () {
+        self.DardeDilReady.removeAll();
+        $("#body").css({"display": "none"});
+        $("#dard-e-dil").css({"display": "initial"});
+        $.ajax({
+            method: 'get',
+            url: "https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
+            dataType: "json",
+            data: {video_ids: "3x2ABSAMVno,t4H_Zoh7G5A,SmM0653YvXU,EPo5wWmKEaI,_Z5-P9v3F8w,uelHwf8o7_U"}
+        })
+                .done(function (data) {
+                    for (var i = 0; i < data.video.length; i++)
+                    {
+                        self.DardeDilReady.push(new FormatToCategories(data.video[i]));
+                    }
+                })
+    };
+    self.Rock = function () {
+        self.RockReady.removeAll();
+        $("#body").css({"display": "none"});
+        $("#rock").css({"display": "initial"});
+        $.ajax({
+            method: 'get',
+            url: "https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
+            dataType: "json",
+            data: {video_ids: "3x2ABSAMVno,t4H_Zoh7G5A,SmM0653YvXU,EPo5wWmKEaI,_Z5-P9v3F8w,uelHwf8o7_U"}
+        })
+                .done(function (data) {
+                    for (var i = 0; i < data.video.length; i++)
+                    {
+                        self.RockReady.push(new FormatToCategories(data.video[i]));
+                    }
+                })
 
     };
-    self.playcatagories4 = function () {
-
-        player.loadPlaylist(viewmodel.Hindivideolist());
-        player.setShuffle(true);
+    self.Artists = function () {
+        self.ArtistsReady.removeAll();
+        $("#body").css({"display": "none"});
+        $("#artists").css({"display": "initial"});
+        $.ajax({
+            method: 'get',
+            url: "https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
+            dataType: "json",
+            data: {video_ids: "3x2ABSAMVno,t4H_Zoh7G5A,SmM0653YvXU,EPo5wWmKEaI,_Z5-P9v3F8w,uelHwf8o7_U"}
+        })
+                .done(function (data) {
+                    for (var i = 0; i < data.video.length; i++)
+                    {
+                        self.ArtistsReady.push(new FormatToCategories(data.video[i]));
+                    }
+                })
     };
-    self.playcatagories5 = function () {
-        player.loadPlaylist(viewmodel.Hindivideolist());
-        player.setShuffle(true);
+    self.Workout = function () {
+        self.WorkoutReady.removeAll();
+        $("#body").css({"display": "none"});
+        $("#workout").css({"display": "initial"});
+        $.ajax({
+            method: 'get',
+            url: "https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
+            dataType: "json",
+            data: {video_ids: "3x2ABSAMVno,t4H_Zoh7G5A,SmM0653YvXU,EPo5wWmKEaI,_Z5-P9v3F8w,uelHwf8o7_U"}
+        })
+                .done(function (data) {
+                    for (var i = 0; i < data.video.length; i++)
+                    {
+                        self.WorkoutReady.push(new FormatToCategories(data.video[i]));
+                    }
+                })
+    };
+    self.RemixDj = function () {
+        self.RemixDjReady.removeAll();
+        $("#body").css({"display": "none"});
+        $("#remixdj").css({"display": "initial"});
+        $.ajax({
+            method: 'get',
+            url: "https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
+            dataType: "json",
+            data: {video_ids: "3x2ABSAMVno,t4H_Zoh7G5A,SmM0653YvXU,EPo5wWmKEaI,_Z5-P9v3F8w,uelHwf8o7_U"}
+        })
+                .done(function (data) {
+                    for (var i = 0; i < data.video.length; i++)
+                    {
+                        self.RemixDjReady.push(new FormatToCategories(data.video[i]));
+                    }
+                })
 
     };
-    self.playcatagories6 = function () {
-
-        player.loadPlaylist(viewmodel.Hindivideolist());
-        player.setShuffle(true);
+    self.Marathisongs = function () {
+        self.MarathiReady.removeAll();
+        $("#body").css({"display": "none"});
+        $("#marathi").css({"display": "initial"});
+        $.ajax({
+            method: 'get',
+            url: "https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
+            dataType: "json",
+            data: {video_ids: "3x2ABSAMVno,t4H_Zoh7G5A,SmM0653YvXU,EPo5wWmKEaI,_Z5-P9v3F8w,uelHwf8o7_U"}
+        })
+                .done(function (data) {
+                    for (var i = 0; i < data.video.length; i++)
+                    {
+                        self.MarathiReady.push(new FormatToCategories(data.video[i]));
+                    }
+                })
     };
-    self.playcatagories7 = function () {
-        player.loadPlaylist(viewmodel.Hindivideolist());
-        player.setShuffle(true);
-
-    };
-    self.playcatagories8 = function () {
-
-        player.loadPlaylist(viewmodel.Hindivideolist());
-        player.setShuffle(true);
-    };
-    self.playcatagories9 = function () {
-        player.loadPlaylist(viewmodel.Hindivideolist());
-        player.setShuffle(true);
-
-    };
-
 };
-
-$.getJSON("Hindivideolist.json", function (data) {
-    for (var i = 0; i < data.url.length; i++) {
-        viewmodel.Hindivideolist.push(YouTubeGetID(data.url[i]));
-    }
-    viewmodel.Hindivideolist.reverse();
-});
-$.getJSON("Englishvideolist.json", function (data) {
-    for (var i = 0; i < data.url.length; i++) {
-        viewmodel.Englishvideolist.push(YouTubeGetID(data.url[i]));
-    }
-});
 
 function FormatToDisplay(item) {
 
@@ -294,8 +399,52 @@ function FormatToDisplay(item) {
         viewmodel.tempplaylist.remove(data.videoId);
         viewmodel.templistlength(viewmodel.tempplaylist().length);
     };
+};
+
+function  FormatToCategories(item) {
+
+    this.VideoId = item.encrypted_id;
+    this.videotitle = item.title;
+    this.duration = item.duration;
+    this.imgsrc = "https://i.ytimg.com/vi/" + item.encrypted_id + "/mqdefault.jpg";
+
+    this.playselectedvideo = function (data) {
+        viewmodel.templistmode(false);
+        player.loadVideoById(data.VideoId);
+        player.setPlaybackQuality("small");
+    };
+    this.closecurrentdiv = function (data) {
+        viewmodel.bollywood90songsReady.remove(data);
+    };
+    this.playaddedsongs = function (data) {
+        $("#" + data.VideoId).hide();
+        $("#ok" + data.VideoId).show();
+        var temp = viewmodel.tempplaylist().length;
+        var id = data.VideoId;
+        var itempresent = false;
+        for (var j = 0; j < temp; j++) {
+            if (id == viewmodel.tempplaylist()[j]) {
+                itempresent = true;
+            }
+        }
+        if (itempresent == false) {
+            viewmodel.tempplaylist().push(id)
+        }
+        if (temp === 0) {
+            player.loadVideoById(id);
+            viewmodel.templistmode(true);
+            viewmodel.currentsongsindex(0);
+        }
+        viewmodel.templistlength(viewmodel.tempplaylist().length);
+    };
+    this.removefromtemplist = function (data) {
+        $("#" + data.VideoId).show();
+        $("#ok" + data.VideoId).hide();
+        viewmodel.tempplaylist.remove(data.VideoId);
+        viewmodel.templistlength(viewmodel.tempplaylist().length);
+    };
 }
-;
+
 
 $(".youtubesearchfield").keypress(function (event) {
     if (event.which == 13) {
@@ -309,9 +458,21 @@ function init() {
     gapi.client.load("youtube", "v3", function () {
         console.log("Youtube Api is ready");
     });
-}
-;
+};
 
+function getvideolistready() {
+    $.getJSON("Hindivideolist.json", function (data) {
+        for (var i = 0; i < data.url.length; i++) {
+            viewmodel.Hindivideolist.push(YouTubeGetID(data.url[i]));
+        }
+        viewmodel.Hindivideolist.reverse();
+    });
+    $.getJSON("Englishvideolist.json", function (data) {
+        for (var i = 0; i < data.url.length; i++) {
+            viewmodel.Englishvideolist.push(YouTubeGetID(data.url[i]));
+        }
+    });
+};
 
 //ko.bindingHandlers.kendoDropDownList.options={
 //    optionLabel : "Choose a School...",
