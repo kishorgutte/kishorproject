@@ -28,3 +28,35 @@
      $("#"+$(data).attr("id")).css({"display":"none"});
      $("#body").css({"display":"initial"});
  };
+ 
+ function getvideolistready() {
+    $.getJSON("videolist/Hindivideolist.json", function (data) {
+        for (var i = 0; i < data.url.length; i++) {
+            viewmodel.Hindivideolist.push(YouTubeGetID(data.url[i]));
+        }
+        viewmodel.Hindivideolist.reverse();
+    });
+    $.getJSON("videolist/bollywoodsuperhit.json", function (data) {
+        for (var i = 0; i < data.url.length; i++) {
+            viewmodel.bollywoodsuperhitlist(viewmodel.bollywoodsuperhitlist() + "," + YouTubeGetID(data.url[i]));
+        }
+    });
+    $.getJSON("videolist/Englishsongslist.json", function (data) {
+        for (var i = 0; i < data.url.length; i++) {
+            viewmodel.Englishsongslist(viewmodel.Englishsongslist() + "," + YouTubeGetID(data.url[i]));
+        }
+    });
+    
+    $.getJSON("videolist/Marathisongslist.json", function (data) {
+        for (var i = 0; i < data.url.length; i++) {
+            viewmodel.Marathisongslist(viewmodel.Marathisongslist() + "," + YouTubeGetID(data.url[i]));
+        }
+    });
+    
+    $.getJSON("videolist/RemixandDjsongslist.json", function (data) {
+        for (var i = 0; i < data.url.length; i++) {
+            viewmodel.RemixandDjsongslist(viewmodel.RemixandDjsongslist() + "," + YouTubeGetID(data.url[i]));
+        }
+    });
+
+};

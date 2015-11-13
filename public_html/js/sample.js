@@ -27,9 +27,7 @@ function onYouTubeIframeAPIReady() {
 }
 // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
-    getvideolistready();
-    player.loadPlaylist(viewmodel.Hindivideolist());
-    //player.loadPlaylist(viewmodel.Englishvideolist());
+    // player.loadPlaylist(viewmodel.Hindivideolist());
     player.setShuffle(true);
     player.setLoop(true);
     //event.target.playVideo();
@@ -101,14 +99,19 @@ var viewmodeldata = function () {
 
     self.isvideohidden = ko.observable(true);
     self.Hindivideolist = ko.observableArray();
-    self.Englishvideolist = ko.observableArray();
     self.youtubesearchedlist = ko.observableArray();
     self.responseresult = ko.observableArray([]);
     self.tempplaylist = ko.observableArray();
     self.templistlength = ko.observable();
     self.templistmode = ko.observable(false);
     self.currentsongsindex = ko.observable(0);
-    self.bollywood90songsReady = ko.observableArray();
+    self.bollywoodsuperhitlist = ko.observable("0pehqPZuB8A");
+    self.Englishsongslist = ko.observable("3x2ABSAMVno");
+    self.Marathisongslist = ko.observable("0FBzaGdtzCs");
+    self.RemixandDjsongslist = ko.observable("Dq64_9NCv1o");
+ 
+    
+    self.bollywoodsuperhitReady = ko.observableArray();
     self.englishsongsReady = ko.observableArray();
     self.RomanceReady = ko.observableArray();
     self.DardeDilReady = ko.observableArray();
@@ -189,22 +192,23 @@ var viewmodeldata = function () {
     },
             self.init = function () {
                 ko.applyBindings(self);
+                getvideolistready();
             };
 
-    self.bollywood90songs = function () {
-        self.bollywood90songsReady.removeAll();
+    self.bollywoodsuperhit = function () {
+        self.bollywoodsuperhitReady.removeAll();
         $("#body").css({"display": "none"});
-        $("#bollywood90songs").css({"display": "initial"});
+        $("#bollywoodsuperhits").css({"display": "initial"});
         $.ajax({
             method: 'get',
             url: "https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
             dataType: "json",
-            data: {video_ids: "OulN7vTDq1I,UR3_vsWHrqw,DrwU9OgJjW8,R8rNw0bGOBA,o_LtQR-l3K0,qE3DfF66DNA"}
+            data: {video_ids: viewmodel.bollywoodsuperhitlist()},
         })
                 .done(function (data) {
                     for (var i = 0; i < data.video.length; i++)
                     {
-                        self.bollywood90songsReady.push(new FormatToCategories(data.video[i]));
+                        self.bollywoodsuperhitReady.push(new FormatToCategories(data.video[i]));
                     }
                 })
     };
@@ -216,7 +220,7 @@ var viewmodeldata = function () {
             method: 'get',
             url: "https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
             dataType: "json",
-            data: {video_ids: "3x2ABSAMVno,t4H_Zoh7G5A,SmM0653YvXU,EPo5wWmKEaI,_Z5-P9v3F8w,uelHwf8o7_U"}
+            data: {video_ids: viewmodel.Englishsongslist()},
         })
                 .done(function (data) {
                     for (var i = 0; i < data.video.length; i++)
@@ -320,7 +324,7 @@ var viewmodeldata = function () {
             method: 'get',
             url: "https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
             dataType: "json",
-            data: {video_ids: "3x2ABSAMVno,t4H_Zoh7G5A,SmM0653YvXU,EPo5wWmKEaI,_Z5-P9v3F8w,uelHwf8o7_U"}
+            data: {video_ids: viewmodel.RemixandDjsongslist()}
         })
                 .done(function (data) {
                     for (var i = 0; i < data.video.length; i++)
@@ -338,7 +342,7 @@ var viewmodeldata = function () {
             method: 'get',
             url: "https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
             dataType: "json",
-            data: {video_ids: "3x2ABSAMVno,t4H_Zoh7G5A,SmM0653YvXU,EPo5wWmKEaI,_Z5-P9v3F8w,uelHwf8o7_U"}
+            data: {video_ids: viewmodel.Marathisongslist()}
         })
                 .done(function (data) {
                     for (var i = 0; i < data.video.length; i++)
@@ -399,7 +403,8 @@ function FormatToDisplay(item) {
         viewmodel.tempplaylist.remove(data.videoId);
         viewmodel.templistlength(viewmodel.tempplaylist().length);
     };
-};
+}
+;
 
 function  FormatToCategories(item) {
 
@@ -458,21 +463,8 @@ function init() {
     gapi.client.load("youtube", "v3", function () {
         console.log("Youtube Api is ready");
     });
-};
-
-function getvideolistready() {
-    $.getJSON("Hindivideolist.json", function (data) {
-        for (var i = 0; i < data.url.length; i++) {
-            viewmodel.Hindivideolist.push(YouTubeGetID(data.url[i]));
-        }
-        viewmodel.Hindivideolist.reverse();
-    });
-    $.getJSON("Englishvideolist.json", function (data) {
-        for (var i = 0; i < data.url.length; i++) {
-            viewmodel.Englishvideolist.push(YouTubeGetID(data.url[i]));
-        }
-    });
-};
+}
+;
 
 //ko.bindingHandlers.kendoDropDownList.options={
 //    optionLabel : "Choose a School...",

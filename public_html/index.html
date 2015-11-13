@@ -52,9 +52,9 @@ and open the template in the editor.
                         <span class="text-center" style="color:rgb(110, 37, 87);font-size:18px;text-align: center"> Select songs by genre </span>  
                         <div class = "kc-wrap myclass">
                             <!-- Carousel items follow -->
-                            <div class="kc-item" data-bind="click:bollywood90songs">
+                            <div class="kc-item" data-bind="click:bollywoodsuperhit">
                                 <img class="img-circle img-responsive" src="images/popular.jpg" alt = "Bollywood Rocks">
-                                <span id="imagecenter">Bollywood 90's <br> Songs</span>
+                                <span id="imagecenter">Bollywood <br> SuperHit</span>
                             </div>
                             <div class="kc-item" data-bind="click:englishsongs">
                                 <img class="img-circle img-responsive" src="images/english.jpg" alt = "English Songs">
@@ -97,20 +97,20 @@ and open the template in the editor.
             </div>
         </div>
 
-        <!-- Start of bollywood 90s songs-->
-        <div id="bollywood90songs" style="display: none" >
+        <!-- Start of Bollywood SuperHits songs-->
+        <div id="bollywoodsuperhits" style="display: none" >
             <div class="container">
                 <div class="row" style="margin-top: 15px;margin-bottom: 15px">
                     <div class="col-lg-5 col-md-5">
-                        <span class="glyphicon glyphicon-arrow-left backarrow" onclick="backtohome(document.getElementById('bollywood90songs'))">
+                        <span class="glyphicon glyphicon-arrow-left backarrow" onclick="backtohome(document.getElementById('bollywoodsuperhits'))">
                         </span>  
                     </div>  
                     <div class="col-lg-7 col-md-7">
-                        <div><strong style="color: rgb(184, 59, 107)"> Bollywood 90s songs</strong>
+                        <div><strong style="color: rgb(184, 59, 107)"> Bollywood SuperHit</strong>
                         </div>
                     </div>
                 </div> 
-                <div class="row" id="catagoriesid" data-bind="foreach:{data:bollywood90songsReady}">
+                <div class="row" id="catagoriesid" data-bind="foreach:{data:bollywoodsuperhitReady}">
                     <div class="col-xs-6 col-md-3 col-sm-3">
                         <a data-bind="attr:{title:videotitle},"  class="thumbnail">
                             <span data-bind="click:closecurrentdiv " id="closebutton" class="glyphicon glyphicon-remove"></span>
