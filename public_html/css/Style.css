@@ -8,14 +8,35 @@ and open the template in the editor.
     Author     : Kishor Gutte
 */
 
-
 #idwrapper{
     
 }
-
-#headerdiv{
-    background-image: url("background.png");
+.backarrow{
+    font-size: 41px;
+    color: rgb(48, 114, 172);
 }
+
+.backarrow:hover{
+    cursor: pointer;
+}
+
+#mediacontrols .btn-primary{
+ margin-bottom: 5px;   
+}
+#header{
+/*    background-image: url("background.png");*/
+background-color: #EEE;
+}
+#body{
+  /* display: table-caption; */
+  background-color: #EEE;  
+
+  /* border-top: 1px solid; */
+/*  border-bottom: 1px solid;
+  margin-top: 2px;*/
+  margin-top: 12px;
+}
+
 @media (min-width: 670px){
     #songsbutton {
         display: initial;
@@ -32,6 +53,12 @@ and open the template in the editor.
 #mycontainerid .thumbnail:hover{
     cursor: pointer;
 }
+
+#catagoriesid .thumbnail:hover{
+    cursor: pointer;
+}
+
+
 #PauseAddedVideo{
     display: none;
 }
@@ -155,7 +182,7 @@ Adding css for carousal
     position:absolute;
     pointer-events: none;   /* Make images non-selectable. */
     width:100% !important;    
-    height: 75% !important;
+    height:75% !important;
     /* Make images expand to wrapper size (used in 2d modes). */
 }
 

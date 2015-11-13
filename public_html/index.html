@@ -25,74 +25,322 @@ and open the template in the editor.
 
     </head>
     <body>
-        <div class="container" id="headerdiv">
-            <div class="row" id="mediacontrols">
-                <button type="button" data-toggle="modal" data-target=".youtubemodal" id="showbutton" class="btn btn-primary"  data-bind="click: showvideo"><span class="glyphicon glyphicon-eye-open"></span>  Show</button>
-                <button type="button" id="playvideo" class="btn btn-primary"  data-bind="click : Playvideo"><span class="glyphicon glyphicon-play"></span>  Play   </button>
-                <button type="button" id="pausevideo" class="btn btn-primary"  data-bind="click: Pausevideo"><span class="glyphicon glyphicon-pause"></span>  Pause</button>
-                <button type="button" class="btn btn-primary"  data-bind="click:stopvideo"><span class="glyphicon glyphicon-stop"></span>  Stop</button>
-                <button type="button" class="btn btn-primary"  data-bind="click: previousvideo"><span class="glyphicon glyphicon-backward"></span>   Previous</button>
-                <button type="button" class="btn btn-primary"  data-bind="click: nextvideo"><span class="glyphicon glyphicon-forward"></span>  Next</button>
-                <button type="button" data-toggle="modal" data-target=".mymodel" id="showbutton" class="btn btn-primary"  data-bind="click:makemodalready "><span class="glyphicon glyphicon glyphicon-search"></span>  Search</button>
-                <span class="text-right profile">
-                    <img src="images/naruto_profile.jpg" class="img-circle" alt="Naruto " width="50" height="50"> 
-                </span>
+        <div id="header">
+            <span class="text-right profile" >
+                <img src="images/naruto_profile.jpg" class="img-circle img-responsive" alt="Naruto " width="50" height="50"> 
+            </span>
 
+            <div class="container">
+                <div class="row" id="mediacontrols">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <button type="button" data-toggle="modal" data-target=".youtubemodal" id="showbutton" class="btn btn-primary"  data-bind="click: showvideo"><span class="glyphicon glyphicon-eye-open"></span>  Show</button>
+                        <button type="button" id="playvideo" class="btn btn-primary"  data-bind="click : Playvideo"><span class="glyphicon glyphicon-play"></span>  Play   </button>
+                        <button type="button" id="pausevideo" class="btn btn-primary"  data-bind="click: Pausevideo"><span class="glyphicon glyphicon-pause"></span>  Pause</button>
+                        <button type="button" class="btn btn-primary"  data-bind="click:stopvideo"><span class="glyphicon glyphicon-stop"></span>  Stop</button>
+                        <button type="button" class="btn btn-primary"  data-bind="click: previousvideo"><span class="glyphicon glyphicon-backward"></span>   Previous</button>
+                        <button type="button" class="btn btn-primary"  data-bind="click: nextvideo"><span class="glyphicon glyphicon-forward"></span>  Next</button>
+                        <button type="button" data-toggle="modal" data-target=".mymodel"  class="btn btn-primary"  data-bind="click:makemodalready "><span class="glyphicon glyphicon glyphicon-search"></span>  Search</button>
+                    </div>
+                </div>
             </div>
+        </div>
 
-
-            <div id="catagories" class="row">
+        <div id="body">
+            <div id="catagories" class="row container">
                 <div class="col-md-12  col-lg-12 col-sm-12 col-xs-12">
                     <div id="idwrapper">
                         <span class="text-center" style="color:rgb(110, 37, 87);font-size:18px;text-align: center"> Select songs by genre </span>  
-                    <div class = "kc-wrap myclass">
-                        <!-- Carousel items follow -->
-                        <div class="kc-item" data-bind="click:playcatagories1">
-                            <img class="img-circle img-responsive" src="images/popular.jpg" alt = "Bollywood Rocks">
-                            <span id="imagecenter">Bollywood 90's <br> Songs</span>
+                        <div class = "kc-wrap myclass">
+                            <!-- Carousel items follow -->
+                            <div class="kc-item" data-bind="click:bollywoodsuperhit">
+                                <img class="img-circle img-responsive" src="images/popular.jpg" alt = "Bollywood Rocks">
+                                <span id="imagecenter">Bollywood <br> SuperHit</span>
+                            </div>
+                            <div class="kc-item" data-bind="click:englishsongs">
+                                <img class="img-circle img-responsive" src="images/english.jpg" alt = "English Songs">
+                                <span id="imagecenter">English Songs</span>
+                            </div> 
+                            <div class="kc-item" data-bind="click:Romance">
+                                <img class="img-circle img-responsive" src="images/romance.jpg" alt = "Romance">
+                                <span id="imagecenter">Romance</span>
+                            </div>
+                            <div class="kc-item" data-bind="click:dardedil">
+                                <img class="img-circle img-responsive" src="images/dardedil.jpg" alt = "Dard-e-Dil">
+                                <span id="imagecenter">Dard-e-Dil</span>
+                            </div>
+                            <div class="kc-item" data-bind="click:Rock"> 
+                                <img class="img-circle img-responsive" src="images/PartySongs.jpg" alt = "Rock">
+                                <span id="imagecenter">Rock</span>
+                            </div>
+                            <div class="kc-item" data-bind="click:Artists">
+                                <img class="img-circle img-responsive" src="images/artist.jpg" alt = "Artists">
+                                <span id="imagecenter">Artists</span>
+                            </div>
+                            <div class="kc-item" data-bind="click:Workout">
+                                <img class="img-circle img-responsive" src="images/workout.jpg" alt = "The Virgin and Child with St Anne and St John the Baptist 1500">
+                                <span id="imagecenter">Workout</span>
+                            </div>
+                            <div class="kc-item" data-bind="click:RemixDj">
+                                <img class="img-circle img-responsive" src="images/remix.jpg" alt = "The Virgin and Child with St Anne and St John the Baptist 1500">
+                                <span id="imagecenter">Remix & DJ <br>Songs</span>
+                            </div>
+                            <div class="kc-item" data-bind="click:Marathisongs">
+                                <img class="img-circle img-responsive" src="images/marathi.jpg" alt = "The Virgin and Child with St Anne and St John the Baptist 1500">
+                                <span id="imagecenter">Marathi Songs</span>
+                            </div>
+
+
                         </div>
-                        <div class="kc-item" data-bind="click:playcatagories2">
-                            <img class="img-circle img-responsive" src="images/english.jpg" alt = "English Songs">
-                            <span id="imagecenter">English Songs</span>
-                        </div> 
-                        <div class="kc-item" data-bind="click:playcatagories3">
-                            <img class="img-circle img-responsive" src="images/romance.jpg" alt = "Romance">
-                            <span id="imagecenter">Romance</span>
-                        </div>
-                        <div class="kc-item" data-bind="click:playcatagories4">
-                            <img class="img-circle img-responsive" src="images/dardedil.jpg" alt = "Dard-e-Dil">
-                            <span id="imagecenter">Dard-e-Dil</span>
-                        </div>
-                        <div class="kc-item" data-bind="click:playcatagories5"> 
-                            <img class="img-circle img-responsive" src="images/PartySongs.jpg" alt = "Rock">
-                            <span id="imagecenter">Rock</span>
-                        </div>
-                        <div class="kc-item" data-bind="click:playcatagories6">
-                            <img class="img-circle img-responsive" src="images/artist.jpg" alt = "Artists">
-                            <span id="imagecenter">Artists</span>
-                        </div>
-                        <div class="kc-item" data-bind="click:playcatagories7">
-                            <img class="img-circle img-responsive" src="images/workout.jpg" alt = "The Virgin and Child with St Anne and St John the Baptist 1500">
-                            <span id="imagecenter">Workout</span>
-                        </div>
-                        <div class="kc-item" data-bind="click:playcatagories8">
-                            <img class="img-circle img-responsive" src="images/remix.jpg" alt = "The Virgin and Child with St Anne and St John the Baptist 1500">
-                            <span id="imagecenter">Remix & DJ <br>Songs</span>
-                        </div>
-                        <div class="kc-item" data-bind="click:playcatagories9">
-                            <img class="img-circle img-responsive" src="images/marathi.jpg" alt = "The Virgin and Child with St Anne and St John the Baptist 1500">
-                            <span id="imagecenter">Marathi Songs</span>
-                        </div>
-                        
-                   
                     </div>
-                        </div>
                 </div>
 
             </div>
-
         </div>
 
+        <!-- Start of Bollywood SuperHits songs-->
+        <div id="bollywoodsuperhits" style="display: none" >
+            <div class="container">
+                <div class="row" style="margin-top: 15px;margin-bottom: 15px">
+                    <div class="col-lg-5 col-md-5">
+                        <span class="glyphicon glyphicon-arrow-left backarrow" onclick="backtohome(document.getElementById('bollywoodsuperhits'))">
+                        </span>  
+                    </div>  
+                    <div class="col-lg-7 col-md-7">
+                        <div><strong style="color: rgb(184, 59, 107)"> Bollywood SuperHit</strong>
+                        </div>
+                    </div>
+                </div> 
+                <div class="row" id="catagoriesid" data-bind="foreach:{data:bollywoodsuperhitReady}">
+                    <div class="col-xs-6 col-md-3 col-sm-3">
+                        <a data-bind="attr:{title:videotitle},"  class="thumbnail">
+                            <span data-bind="click:closecurrentdiv " id="closebutton" class="glyphicon glyphicon-remove"></span>
+                            <span  data-bind="attr:{id:VideoId},click:playaddedsongs "class="glyphicon glyphicon-plus pull-right"></span>
+                            <span  data-bind="attr:{id:'ok'+VideoId},click:removefromtemplist "class="glyphicon glyphicon-ok pull-right" style="display: none"></span>
+                            <img data-bind="click:playselectedvideo,attr:{src:imgsrc},">
+                            <div class="resultTitle" data-bind="click:playselectedvideo,text:videotitle"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div><!-- End of bollywood 90s songs-->
+
+        <!-- Start of English songs-->
+        <div id="englishsongs" style="display: none" >
+            <div class="container">
+                <div class="row" style="margin-top: 15px;margin-bottom: 15px">
+                    <div class="col-lg-5 col-md-5">
+                        <span class="glyphicon glyphicon-arrow-left backarrow" onclick="backtohome(document.getElementById('englishsongs'))" >
+                        </span>  
+                    </div>  
+                    <div class="col-lg-7 col-md-7">
+                        <div><strong style="color: rgb(184, 59, 107)"> English songs</strong>
+                        </div>
+                    </div>
+                </div> 
+                <div class="row" id="catagoriesid" data-bind="foreach:{data:englishsongsReady}">
+                    <div class="col-xs-6 col-md-3 col-sm-3">
+                        <a data-bind="attr:{title:videotitle},"  class="thumbnail">
+                            <span data-bind="click:closecurrentdiv " id="closebutton" class="glyphicon glyphicon-remove"></span>
+                            <span  data-bind="attr:{id:VideoId},click:playaddedsongs "class="glyphicon glyphicon-plus pull-right"></span>
+                            <span  data-bind="attr:{id:'ok'+VideoId},click:removefromtemplist "class="glyphicon glyphicon-ok pull-right" style="display: none"></span>
+                            <img data-bind="click:playselectedvideo,attr:{src:imgsrc},">
+                            <div class="resultTitle" data-bind="click:playselectedvideo,text:videotitle"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- End of English songs-->
+
+        <!-- Start of Romance songs-->
+        <div id="romance" style="display: none" >
+            <div class="container">
+                <div class="row" style="margin-top: 15px;margin-bottom: 15px">
+                    <div class="col-lg-5 col-md-5">
+                        <span class="glyphicon glyphicon-arrow-left backarrow" onclick="backtohome(document.getElementById('romance'))" >
+                        </span>  
+                    </div>  
+                    <div class="col-lg-7 col-md-7">
+                        <div><strong style="color: rgb(184, 59, 107)"> Romance</strong>
+                        </div>
+                    </div>
+                </div> 
+                <div class="row" id="catagoriesid" data-bind="foreach:{data:RomanceReady}">
+                    <div class="col-xs-6 col-md-3 col-sm-3">
+                        <a data-bind="attr:{title:videotitle},"  class="thumbnail">
+                            <span data-bind="click:closecurrentdiv " id="closebutton" class="glyphicon glyphicon-remove"></span>
+                            <span  data-bind="attr:{id:VideoId},click:playaddedsongs "class="glyphicon glyphicon-plus pull-right"></span>
+                            <span  data-bind="attr:{id:'ok'+VideoId},click:removefromtemplist "class="glyphicon glyphicon-ok pull-right" style="display: none"></span>
+                            <img data-bind="click:playselectedvideo,attr:{src:imgsrc},">
+                            <div class="resultTitle" data-bind="click:playselectedvideo,text:videotitle"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>  <!-- End of Romance songs--> 
+
+        <!-- Start of Dard-e-Dil songs-->
+        <div id="dard-e-dil" style="display: none" >
+            <div class="container">
+                <div class="row" style="margin-top: 15px;margin-bottom: 15px">
+                    <div class="col-lg-5 col-md-5">
+                        <span class="glyphicon glyphicon-arrow-left backarrow" onclick="backtohome(document.getElementById('dard-e-dil'))" >
+                        </span>  
+                    </div>  
+                    <div class="col-lg-7 col-md-7">
+                        <div><strong style="color: rgb(184, 59, 107)"> Dard-e-Dil</strong>
+                        </div>
+                    </div>
+                </div> 
+                <div class="row" id="catagoriesid" data-bind="foreach:{data:DardeDilReady}">
+                    <div class="col-xs-6 col-md-3 col-sm-3">
+                        <a data-bind="attr:{title:videotitle},"  class="thumbnail">
+                            <span data-bind="click:closecurrentdiv " id="closebutton" class="glyphicon glyphicon-remove"></span>
+                            <span  data-bind="attr:{id:VideoId},click:playaddedsongs "class="glyphicon glyphicon-plus pull-right"></span>
+                            <span  data-bind="attr:{id:'ok'+VideoId},click:removefromtemplist "class="glyphicon glyphicon-ok pull-right" style="display: none"></span>
+                            <img data-bind="click:playselectedvideo,attr:{src:imgsrc},">
+                            <div class="resultTitle" data-bind="click:playselectedvideo,text:videotitle"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>  <!-- End of Dard-e-Dil songs--> 
+
+         <!-- Start of Rock songs-->
+        <div id="rock" style="display: none" >
+            <div class="container">
+                <div class="row" style="margin-top: 15px;margin-bottom: 15px">
+                    <div class="col-lg-5 col-md-5">
+                        <span class="glyphicon glyphicon-arrow-left backarrow" onclick="backtohome(document.getElementById('rock'))" >
+                        </span>  
+                    </div>  
+                    <div class="col-lg-7 col-md-7">
+                        <div><strong style="color: rgb(184, 59, 107)">Rock</strong>
+                        </div>
+                    </div>
+                </div> 
+                <div class="row" id="catagoriesid" data-bind="foreach:{data:RockReady}">
+                    <div class="col-xs-6 col-md-3 col-sm-3">
+                        <a data-bind="attr:{title:videotitle},"  class="thumbnail">
+                            <span data-bind="click:closecurrentdiv " id="closebutton" class="glyphicon glyphicon-remove"></span>
+                            <span  data-bind="attr:{id:VideoId},click:playaddedsongs "class="glyphicon glyphicon-plus pull-right"></span>
+                            <span  data-bind="attr:{id:'ok'+VideoId},click:removefromtemplist "class="glyphicon glyphicon-ok pull-right" style="display: none"></span>
+                            <img data-bind="click:playselectedvideo,attr:{src:imgsrc},">
+                            <div class="resultTitle" data-bind="click:playselectedvideo,text:videotitle"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>  <!-- End of Rock songs--> 
+
+        <!-- Start of Artists songs-->
+        <div id="artists" style="display: none" >
+            <div class="container">
+                <div class="row" style="margin-top: 15px;margin-bottom: 15px">
+                    <div class="col-lg-5 col-md-5">
+                        <span class="glyphicon glyphicon-arrow-left backarrow" onclick="backtohome(document.getElementById('artists'))" >
+                        </span>  
+                    </div>  
+                    <div class="col-lg-7 col-md-7">
+                        <div><strong style="color: rgb(184, 59, 107)">Artists</strong>
+                        </div>
+                    </div>
+                </div> 
+                <div class="row" id="catagoriesid" data-bind="foreach:{data:ArtistsReady}">
+                    <div class="col-xs-6 col-md-3 col-sm-3">
+                        <a data-bind="attr:{title:videotitle},"  class="thumbnail">
+                            <span data-bind="click:closecurrentdiv " id="closebutton" class="glyphicon glyphicon-remove"></span>
+                            <span  data-bind="attr:{id:VideoId},click:playaddedsongs "class="glyphicon glyphicon-plus pull-right"></span>
+                            <span  data-bind="attr:{id:'ok'+VideoId},click:removefromtemplist "class="glyphicon glyphicon-ok pull-right" style="display: none"></span>
+                            <img data-bind="click:playselectedvideo,attr:{src:imgsrc},">
+                            <div class="resultTitle" data-bind="click:playselectedvideo,text:videotitle"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>  <!-- End of Artists songs--> 
+
+       <!-- Start of Workout songs-->
+        <div id="workout" style="display: none" >
+            <div class="container">
+                <div class="row" style="margin-top: 15px;margin-bottom: 15px">
+                    <div class="col-lg-5 col-md-5">
+                        <span class="glyphicon glyphicon-arrow-left backarrow" onclick="backtohome(document.getElementById('workout'))" >
+                        </span>  
+                    </div>  
+                    <div class="col-lg-7 col-md-7">
+                        <div><strong style="color: rgb(184, 59, 107)">Workout</strong>
+                        </div>
+                    </div>
+                </div> 
+                <div class="row" id="catagoriesid" data-bind="foreach:{data:WorkoutReady}">
+                    <div class="col-xs-6 col-md-3 col-sm-3">
+                        <a data-bind="attr:{title:videotitle},"  class="thumbnail">
+                            <span data-bind="click:closecurrentdiv " id="closebutton" class="glyphicon glyphicon-remove"></span>
+                            <span  data-bind="attr:{id:VideoId},click:playaddedsongs "class="glyphicon glyphicon-plus pull-right"></span>
+                            <span  data-bind="attr:{id:'ok'+VideoId},click:removefromtemplist "class="glyphicon glyphicon-ok pull-right" style="display: none"></span>
+                            <img data-bind="click:playselectedvideo,attr:{src:imgsrc},">
+                            <div class="resultTitle" data-bind="click:playselectedvideo,text:videotitle"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>  <!-- End of Workout songs--> 
+
+         <!-- Start of Remix & DJ songs-->
+        <div id="remixdj" style="display: none" >
+            <div class="container">
+                <div class="row" style="margin-top: 15px;margin-bottom: 15px">
+                    <div class="col-lg-5 col-md-5">
+                        <span class="glyphicon glyphicon-arrow-left backarrow" onclick="backtohome(document.getElementById('remixdj'))" >
+                        </span>  
+                    </div>  
+                    <div class="col-lg-7 col-md-7">
+                        <div><strong style="color: rgb(184, 59, 107)">Remix & Dj</strong>
+                        </div>
+                    </div>
+                </div> 
+                <div class="row" id="catagoriesid" data-bind="foreach:{data:RemixDjReady}">
+                    <div class="col-xs-6 col-md-3 col-sm-3">
+                        <a data-bind="attr:{title:videotitle},"  class="thumbnail">
+                            <span data-bind="click:closecurrentdiv " id="closebutton" class="glyphicon glyphicon-remove"></span>
+                            <span  data-bind="attr:{id:VideoId},click:playaddedsongs "class="glyphicon glyphicon-plus pull-right"></span>
+                            <span  data-bind="attr:{id:'ok'+VideoId},click:removefromtemplist "class="glyphicon glyphicon-ok pull-right" style="display: none"></span>
+                            <img data-bind="click:playselectedvideo,attr:{src:imgsrc},">
+                            <div class="resultTitle" data-bind="click:playselectedvideo,text:videotitle"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>  <!-- End of Remix & DJ songs--> 
+
+        <!-- Start of Marathi songs-->
+        <div id="marathi" style="display: none" >
+            <div class="container">
+                <div class="row" style="margin-top: 15px;margin-bottom: 15px">
+                    <div class="col-lg-5 col-md-5">
+                        <span class="glyphicon glyphicon-arrow-left backarrow" onclick="backtohome(document.getElementById('marathi'))" >
+                        </span>  
+                    </div>  
+                    <div class="col-lg-7 col-md-7">
+                        <div><strong style="color: rgb(184, 59, 107)">Marathi Songs</strong>
+                        </div>
+                    </div>
+                </div> 
+                <div class="row" id="catagoriesid" data-bind="foreach:{data:MarathiReady}">
+                    <div class="col-xs-6 col-md-3 col-sm-3">
+                        <a data-bind="attr:{title:videotitle},"  class="thumbnail">
+                            <span data-bind="click:closecurrentdiv " id="closebutton" class="glyphicon glyphicon-remove"></span>
+                            <span  data-bind="attr:{id:VideoId},click:playaddedsongs "class="glyphicon glyphicon-plus pull-right"></span>
+                            <span  data-bind="attr:{id:'ok'+VideoId},click:removefromtemplist "class="glyphicon glyphicon-ok pull-right" style="display: none"></span>
+                            <img data-bind="click:playselectedvideo,attr:{src:imgsrc},">
+                            <div class="resultTitle" data-bind="click:playselectedvideo,text:videotitle"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>  <!-- End of Marathi Songs--> 
+
+        
 
         <!-- Modal -->
         <div class="modal fade bs-example-modal-lg youtubemodal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
@@ -172,8 +420,8 @@ and open the template in the editor.
         <script src="js/killercarousel.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/bootstrap-switch.min.js"></script>
-        <script src="js/sample.js"></script>
         <script src="js/sample2.js"></script>
+        <script src="js/sample.js"></script>
         <script src="https://apis.google.com/js/client.js?onload=init"></script>
 
 
