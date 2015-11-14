@@ -26,7 +26,7 @@ function onYouTubeIframeAPIReady() {
 }
 // 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
-    // player.loadPlaylist(viewmodel.Hindivideolist());
+    player.loadPlaylist(viewmodel.Hindivideolist());
     player.setShuffle(true);
     player.setLoop(true);
     //event.target.playVideo();
@@ -108,7 +108,8 @@ var viewmodeldata = function () {
     self.Englishsongslist = ko.observable("3x2ABSAMVno");
     self.Marathisongslist = ko.observable("0FBzaGdtzCs");
     self.RemixandDjsongslist = ko.observable("Dq64_9NCv1o");
- 
+    self.Romancesongslist = ko.observable("DG2K7gQdzbE");
+    self.Workoutsongslist = ko.observable("69CEiHfS_mc");
     
     self.bollywoodsuperhitReady = ko.observableArray();
     self.englishsongsReady = ko.observableArray();
@@ -236,7 +237,7 @@ var viewmodeldata = function () {
             method: 'get',
             url: "https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
             dataType: "json",
-            data: {video_ids: "3x2ABSAMVno,t4H_Zoh7G5A,SmM0653YvXU,EPo5wWmKEaI,_Z5-P9v3F8w,uelHwf8o7_U"}
+            data: {video_ids:viewmodel.Romancesongslist()}
         })
                 .done(function (data) {
                     for (var i = 0; i < data.video.length; i++)
@@ -246,42 +247,9 @@ var viewmodeldata = function () {
                 })
 
     };
-    self.dardedil = function () {
-        self.DardeDilReady.removeAll();
-        $("#body").css({"display": "none"});
-        $("#dard-e-dil").css({"display": "initial"});
-        $.ajax({
-            method: 'get',
-            url: "https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
-            dataType: "json",
-            data: {video_ids: "3x2ABSAMVno,t4H_Zoh7G5A,SmM0653YvXU,EPo5wWmKEaI,_Z5-P9v3F8w,uelHwf8o7_U"}
-        })
-                .done(function (data) {
-                    for (var i = 0; i < data.video.length; i++)
-                    {
-                        self.DardeDilReady.push(new FormatToCategories(data.video[i]));
-                    }
-                })
-    };
-    self.Rock = function () {
-        self.RockReady.removeAll();
-        $("#body").css({"display": "none"});
-        $("#rock").css({"display": "initial"});
-        $.ajax({
-            method: 'get',
-            url: "https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
-            dataType: "json",
-            data: {video_ids: "3x2ABSAMVno,t4H_Zoh7G5A,SmM0653YvXU,EPo5wWmKEaI,_Z5-P9v3F8w,uelHwf8o7_U"}
-        })
-                .done(function (data) {
-                    for (var i = 0; i < data.video.length; i++)
-                    {
-                        self.RockReady.push(new FormatToCategories(data.video[i]));
-                    }
-                })
-
-    };
     self.Artists = function () {
+        alert("Songs Comming Soon, Please Select Other Catagories");
+        return false;
         self.ArtistsReady.removeAll();
         $("#body").css({"display": "none"});
         $("#artists").css({"display": "initial"});
@@ -306,7 +274,7 @@ var viewmodeldata = function () {
             method: 'get',
             url: "https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
             dataType: "json",
-            data: {video_ids: "3x2ABSAMVno,t4H_Zoh7G5A,SmM0653YvXU,EPo5wWmKEaI,_Z5-P9v3F8w,uelHwf8o7_U"}
+            data: {video_ids: viewmodel.Workoutsongslist()}
         })
                 .done(function (data) {
                     for (var i = 0; i < data.video.length; i++)

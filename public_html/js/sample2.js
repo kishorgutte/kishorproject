@@ -58,5 +58,17 @@
             viewmodel.RemixandDjsongslist(viewmodel.RemixandDjsongslist() + "," + YouTubeGetID(data.url[i]));
         }
     });
+    
+    $.getJSON("videolist/Romancesongslist.json", function (data) {
+        for (var i = 0; i < data.url.length; i++) {
+            viewmodel.Romancesongslist(viewmodel.Romancesongslist() + "," + YouTubeGetID(data.url[i]));
+        }
+    });
+    
+    $.getJSON("videolist/Workoutsongslist.json", function (data) {
+        for (var i = 0; i < data.url.length; i++) {
+            viewmodel.Workoutsongslist(viewmodel.Workoutsongslist() + "," + YouTubeGetID(data.url[i]));
+        }
+    });
 
 };
