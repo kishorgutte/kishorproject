@@ -95,7 +95,6 @@ $(document).ready(function () {
 
 var viewmodeldata = function () {
     var self = this;
-
     self.isvideohidden = ko.observable(true);
     self.Hindivideolist = ko.observableArray();
     self.youtubesearchedlist = ko.observableArray();
