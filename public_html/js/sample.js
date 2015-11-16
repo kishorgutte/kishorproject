@@ -125,7 +125,7 @@ var viewmodeldata = function () {
         // $("#player").show();
     };
     self.nextvideo = function () {
-        if (self.templistmode) {
+        if (self.templistmode()) {
             self.currentsongsindex(self.currentsongsindex() + 1);
             player.loadVideoById(self.tempplaylist()[self.currentsongsindex()]);
         } else {
@@ -133,7 +133,7 @@ var viewmodeldata = function () {
         }
     };
     self.previousvideo = function () {
-        if (self.templistmode) {
+        if (self.templistmode()) {
             self.currentsongsindex(self.currentsongsindex() - 1);
             player.loadVideoById(self.tempplaylist()[self.currentsongsindex()]);
         } else {
