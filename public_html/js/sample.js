@@ -18,6 +18,7 @@ function onYouTubeIframeAPIReady() {
         height: '480',
         width: '854',
         videoId: 'R8rNw0bGOBA',
+        iv_load_policy:3,
         playerVars: {'autoplay': 1},
         events: {
             'onReady': onPlayerReady,
@@ -101,7 +102,7 @@ var viewmodeldata = function () {
     self.youtubesearchedlist = ko.observableArray();
     self.responseresult = ko.observableArray([]);
     self.tempplaylist = ko.observableArray();
-    self.templistlength = ko.observable();
+    self.templistlength = ko.observable(0);
     self.templistmode = ko.observable(false);
     self.currentsongsindex = ko.observable(0);
     self.bollywoodsuperhitlist = ko.observable("0pehqPZuB8A");
@@ -179,8 +180,7 @@ var viewmodeldata = function () {
     self.makemodalready = function () {
 
         $(".ui-autocomplete").css({"z-index": "1052"});
-        if (self.tempplaylist().length === 0) {
-            self.templistlength(0);
+        if ($(".youtubesearchfield").val()==="") {
             $(".youtubesearchfield").val("top 100 songs of  Bollywood 2015");
             $("#goforsearch").trigger("click");
             $(".youtubesearchfield").val("");
