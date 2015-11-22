@@ -45,11 +45,11 @@ and open the template in the editor.
             </div>
         </div>
 
-        <div id="body">
-            <div id="catagories" class="row container">
+        <div id="body" class="container">
+            <div id="catagories" class="row">
                 <div class="col-md-12  col-lg-12 col-sm-12 col-xs-12">
                     <div id="idwrapper">
-                        <span class="text-center" style="color:rgb(110, 37, 87);font-size:18px;text-align: center"> Select songs by genre </span>  
+                        <span class="text-center" id="selectbyid"> Select songs by genre </span>  
                         <div class = "kc-wrap myclass">
                             <!-- Carousel items follow -->
                             <div class="kc-item" data-bind="click:bollywoodsuperhit">
@@ -88,7 +88,7 @@ and open the template in the editor.
 
             </div>
         </div>
-
+       
         <!-- Start of Bollywood SuperHits songs-->
         <div id="bollywoodsuperhits" style="display: none" >
             <div class="container">
@@ -102,6 +102,9 @@ and open the template in the editor.
                         </div>
                     </div>
                 </div> 
+                <div class="preloader">
+                     <img  src="images/ripple.svg" alt = "loader">
+                </div>
                 <div class="row" id="catagoriesid" data-bind="foreach:{data:bollywoodsuperhitReady}">
                     <div class="col-xs-6 col-md-3 col-sm-3">
                         <a data-bind="attr:{title:videotitle},"  class="thumbnail">
@@ -128,6 +131,9 @@ and open the template in the editor.
                         </div>
                     </div>
                 </div> 
+                <div class="preloader">
+                     <img  src="images/ripple.svg" alt = "loader">
+                </div>
                 <div class="row" id="catagoriesid" data-bind="foreach:{data:englishsongsReady}">
                     <div class="col-xs-6 col-md-3 col-sm-3">
                         <a data-bind="attr:{title:videotitle},"  class="thumbnail">
@@ -154,6 +160,9 @@ and open the template in the editor.
                         </div>
                     </div>
                 </div> 
+                <div class="preloader">
+                     <img  src="images/ripple.svg" alt = "loader">
+                </div>
                 <div class="row" id="catagoriesid" data-bind="foreach:{data:RomanceReady}">
                     <div class="col-xs-6 col-md-3 col-sm-3">
                         <a data-bind="attr:{title:videotitle},"  class="thumbnail">
@@ -166,7 +175,7 @@ and open the template in the editor.
                 </div>
             </div>
         </div>  <!-- End of Romance songs--> 
-        
+
         <!-- Start of Artists songs-->
         <div id="artists" style="display: none" >
             <div class="container">
@@ -180,6 +189,9 @@ and open the template in the editor.
                         </div>
                     </div>
                 </div> 
+                <div class="preloader">
+                     <img  src="images/ripple.svg" alt = "loader">
+                </div>
                 <div class="row" id="catagoriesid" data-bind="foreach:{data:ArtistsReady}">
                     <div class="col-xs-6 col-md-3 col-sm-3">
                         <a data-bind="attr:{title:videotitle},"  class="thumbnail">
@@ -193,7 +205,7 @@ and open the template in the editor.
             </div>
         </div>  <!-- End of Artists songs--> 
 
-       <!-- Start of Workout songs-->
+        <!-- Start of Workout songs-->
         <div id="workout" style="display: none" >
             <div class="container">
                 <div class="row" style="margin-top: 15px;margin-bottom: 15px">
@@ -206,6 +218,9 @@ and open the template in the editor.
                         </div>
                     </div>
                 </div> 
+                <div class="preloader">
+                     <img  src="images/ripple.svg" alt = "loader">
+                </div>
                 <div class="row" id="catagoriesid" data-bind="foreach:{data:WorkoutReady}">
                     <div class="col-xs-6 col-md-3 col-sm-3">
                         <a data-bind="attr:{title:videotitle},"  class="thumbnail">
@@ -219,7 +234,7 @@ and open the template in the editor.
             </div>
         </div>  <!-- End of Workout songs--> 
 
-         <!-- Start of Remix & DJ songs-->
+        <!-- Start of Remix & DJ songs-->
         <div id="remixdj" style="display: none" >
             <div class="container">
                 <div class="row" style="margin-top: 15px;margin-bottom: 15px">
@@ -232,6 +247,9 @@ and open the template in the editor.
                         </div>
                     </div>
                 </div> 
+                <div class="preloader">
+                     <img  src="images/ripple.svg" alt = "loader">
+                </div>
                 <div class="row" id="catagoriesid" data-bind="foreach:{data:RemixDjReady}">
                     <div class="col-xs-6 col-md-3 col-sm-3">
                         <a data-bind="attr:{title:videotitle},"  class="thumbnail">
@@ -258,6 +276,9 @@ and open the template in the editor.
                         </div>
                     </div>
                 </div> 
+                <div class="preloader">
+                     <img  src="images/ripple.svg" alt = "loader">
+                </div>
                 <div class="row" id="catagoriesid" data-bind="foreach:{data:MarathiReady}">
                     <div class="col-xs-6 col-md-3 col-sm-3">
                         <a data-bind="attr:{title:videotitle},"  class="thumbnail">
@@ -271,7 +292,7 @@ and open the template in the editor.
             </div>
         </div>  <!-- End of Marathi Songs--> 
 
-        
+
 
         <!-- Modal -->
         <div class="modal fade bs-example-modal-lg youtubemodal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
@@ -309,7 +330,7 @@ and open the template in the editor.
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-4  col-xs-2">
                                 <div >
-                                    <button type="button"  id="addvideotemplist" class="btn btn-primary text-center center-block"  data-bind="click: addvideotemplist"><span id="songsbutton">Songs  </span><span class="badge" data-bind="text:templistlength "></span></button>
+                                    <button type="button"  id="songstemplist" class="btn btn-primary text-center center-block"  data-bind=""><span id="songsbutton">Songs  </span><span class="badge" data-bind="text:templistlength "></span></button>
                                 </div>
                             </div><!-- /.col-lg-6 -->
                             <div class="col-lg-6 col-md-6 col-sm-8 col-xs-10">
@@ -341,7 +362,7 @@ and open the template in the editor.
                 </div>
             </div>
         </div>
-        
+
         <script src="js/jquery-2.1.4.min.js"></script>
         <script src="js/knockout-3.3.0.js"></script>
         <script src="js/kendo.all.min.js"></script>

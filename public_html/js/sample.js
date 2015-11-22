@@ -46,7 +46,7 @@ function onPlayerStateChange(event) {
         $("#pausevideo").show();
         $("#playvideo").hide();
     }
-}
+   }
 
 function YouTubeGetID(url) {
     var ID = '';
@@ -100,14 +100,14 @@ var viewmodeldata = function () {
     self.youtubesearchedlist = ko.observableArray();
     self.responseresult = ko.observableArray([]);
     self.tempplaylist = ko.observableArray();
-    self.templistlength = ko.observable();
+    self.templistlength = ko.observable(0);
     self.templistmode = ko.observable(false);
     self.currentsongsindex = ko.observable(0);
     self.bollywoodsuperhitlist = ko.observable("0pehqPZuB8A");
     self.Englishsongslist = ko.observable("3x2ABSAMVno");
     self.Marathisongslist = ko.observable("0FBzaGdtzCs");
     self.RemixandDjsongslist = ko.observable("Dq64_9NCv1o");
-    self.Romancesongslist = ko.observable("DG2K7gQdzbE");
+    self.Romancesongslist = ko.observable("K_uXbheO3qU");
     self.Workoutsongslist = ko.observable("69CEiHfS_mc");
     self.bollywoodsuperhitReady = ko.observableArray();
     self.englishsongsReady = ko.observableArray();
@@ -178,8 +178,7 @@ var viewmodeldata = function () {
     self.makemodalready = function () {
 
         $(".ui-autocomplete").css({"z-index": "1052"});
-        if (self.tempplaylist().length === 0) {
-            self.templistlength(0);
+        if ($(".youtubesearchfield").val()==="") {
             $(".youtubesearchfield").val("top 100 songs of  Bollywood 2015");
             $("#goforsearch").trigger("click");
             $(".youtubesearchfield").val("");
@@ -191,8 +190,9 @@ var viewmodeldata = function () {
             };
     self.bollywoodsuperhit = function () {
         self.bollywoodsuperhitReady.removeAll();
-        $("#body").css({"display": "none"});
+        $("#catagories").css({"display": "none"});
         $("#bollywoodsuperhits").css({"display": "initial"});
+        $(".preloader").show();  
         $.ajax({
             method: 'get',
             url: "https://crossorigin.me/https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
@@ -205,11 +205,13 @@ var viewmodeldata = function () {
                         self.bollywoodsuperhitReady.push(new FormatToCategories(data.video[i]));
                     }
                 })
+               .complete(function (){$(".preloader").hide(); });
     };
     self.englishsongs = function () {
         self.englishsongsReady.removeAll();
-        $("#body").css({"display": "none"});
+        $("#catagories").css({"display": "none"});
         $("#englishsongs").css({"display": "initial"});
+        $(".preloader").show(); 
         $.ajax({
             method: 'get',
             url: "https://crossorigin.me/https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
@@ -221,12 +223,14 @@ var viewmodeldata = function () {
                     {
                         self.englishsongsReady.push(new FormatToCategories(data.video[i]));
                     }
-                });
+                })
+                .complete(function (){$(".preloader").hide(); });
     };
     self.Romance = function () {
         self.RomanceReady.removeAll();
-        $("#body").css({"display": "none"});
+        $("#catagories").css({"display": "none"});
         $("#romance").css({"display": "initial"});
+        $(".preloader").show();
         $.ajax({
             method: 'get',
             url: "https://crossorigin.me/https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
@@ -239,14 +243,16 @@ var viewmodeldata = function () {
                         self.RomanceReady.push(new FormatToCategories(data.video[i]));
                     }
                 })
+                .complete(function (){$(".preloader").hide(); });
 
     };
     self.Artists = function () {
         alert("Songs Comming Soon, Please Select Other Catagories");
         return false;
         self.ArtistsReady.removeAll();
-        $("#body").css({"display": "none"});
+        $("#catagories").css({"display": "none"});
         $("#artists").css({"display": "initial"});
+        $(".preloader").show()
         $.ajax({
             method: 'get',
             url: "https://crossorigin.me/https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
@@ -259,11 +265,13 @@ var viewmodeldata = function () {
                         self.ArtistsReady.push(new FormatToCategories(data.video[i]));
                     }
                 })
+               .complete(function (){$(".preloader").hide(); });
     };
     self.Workout = function () {
         self.WorkoutReady.removeAll();
-        $("#body").css({"display": "none"});
+        $("#catagories").css({"display": "none"});
         $("#workout").css({"display": "initial"});
+        $(".preloader").show();
         $.ajax({
             method: 'get',
             url: "https://crossorigin.me/https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
@@ -276,11 +284,13 @@ var viewmodeldata = function () {
                         self.WorkoutReady.push(new FormatToCategories(data.video[i]));
                     }
                 })
+               .complete(function (){$(".preloader").hide(); });
     };
     self.RemixDj = function () {
         self.RemixDjReady.removeAll();
-        $("#body").css({"display": "none"});
+        $("#catagories").css({"display": "none"});
         $("#remixdj").css({"display": "initial"});
+        $(".preloader").show();
         $.ajax({
             method: 'get',
             url: "https://crossorigin.me/https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
@@ -293,12 +303,14 @@ var viewmodeldata = function () {
                         self.RemixDjReady.push(new FormatToCategories(data.video[i]));
                     }
                 })
+               .complete(function (){$(".preloader").hide(); });
 
     };
     self.Marathisongs = function () {
         self.MarathiReady.removeAll();
-        $("#body").css({"display": "none"});
+        $("#catagories").css({"display": "none"});
         $("#marathi").css({"display": "initial"});
+         $(".preloader").show();
         $.ajax({
             method: 'get',
             url: "https://crossorigin.me/https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
@@ -311,8 +323,8 @@ var viewmodeldata = function () {
                         self.MarathiReady.push(new FormatToCategories(data.video[i]));
                     }
                 })
-    }
-    ;
+                  .complete(function (){$(".preloader").hide(); });
+    };
 };
 function FormatToDisplay(item) {
 

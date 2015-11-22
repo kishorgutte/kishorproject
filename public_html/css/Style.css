@@ -9,8 +9,17 @@ and open the template in the editor.
 */
 
 #idwrapper{
-    
+
 }
+
+.preloader{
+    position: absolute;
+    top: 48%;
+    left: 44%;
+    margin-top: -50px;
+    margin-left: -50px;
+}
+
 .backarrow{
     font-size: 41px;
     color: rgb(48, 114, 172);
@@ -21,32 +30,105 @@ and open the template in the editor.
 }
 
 #mediacontrols .btn-primary{
- margin-bottom: 5px;   
+    margin-bottom: 5px;   
 }
 #header{
-/*    background-image: url("background.png");*/
-background-color: #EEE;
+    background-color: #EEE;
 }
 #body{
-  /* display: table-caption; */
-  background-color: #EEE;  
-
-  /* border-top: 1px solid; */
-/*  border-bottom: 1px solid;
-  margin-top: 2px;*/
-  margin-top: 12px;
+    background-color: #EEE;  
+    margin-top: 2px;
 }
 
 @media (min-width: 670px){
     #songsbutton {
         display: initial;
     }  
+
+    .kc-horizon { 
+        perspective: none !important;
+        top: 65% !important;;
+    }
+    .kc-wrap {
+        background-image: none !important;
+        padding-top: 8%;
+        padding-bottom: 11%;
+    } 
+
+    .kc-item img {
+        position:absolute;
+        pointer-events: none;   /* Make images non-selectable. */
+        width:100% !important;    
+        height:75% !important;
+        /* Make images expand to wrapper size (used in 2d modes). */
+    }
+
+    #imagecenter{
+        position: absolute;
+        text-align: center;
+        bottom: 18%;
+        width: 200px;
+        height: 50%;
+        color: white;
+        font-size: 20px
+
+    }
+
 }
 @media (max-width: 670px){
     #songsbutton {
         display: none;
     }  
+
+    .kc-horizon { 
+        perspective: none !important;
+        top: 53% !important;;
+    }
+    .kc-wrap {
+        background-image: none !important;
+        padding-top: 12%;
+        padding-bottom: 21%;
+    } 
+
+    .kc-item img {
+        position:absolute;
+        pointer-events: none;   /* Make images non-selectable. */
+        width:120% !important;    
+        height:90% !important;
+        /* Make images expand to wrapper size (used in 2d modes). */
+    }
+
+    #imagecenter{
+        position: absolute;
+        text-align: center;
+        bottom: 18%;
+        width: 200px;
+        height: 50%;
+        color: white;
+        font-size: 30px;
+        padding-left: 6px;
+        padding-right: 6px;
+
+    }
+
 }
+@media (max-width: 430px){
+    #selectbyid{
+        color:rgb(110, 37, 87);
+        font-size:13px;
+        text-align: center;
+    }
+}
+
+@media (min-width: 430px){
+    #selectbyid{
+        color:rgb(110, 37, 87);
+        font-size:18px;
+        text-align: center;
+    }
+}
+    
+    
 #addvideotemplist{
     margin-top: 19px;
 }
@@ -92,7 +174,7 @@ background-color: #EEE;
     font-size: large;
 }
 #catagories {
- margin-top: 1%
+    margin-top: 1%
 
 }
 .resultTitle{
@@ -178,38 +260,11 @@ Adding css or checkbox
 Adding css for carousal
 */
 /* CSS for images inside item wrapper */
-.kc-item img {
-    position:absolute;
-    pointer-events: none;   /* Make images non-selectable. */
-    width:100% !important;    
-    height:75% !important;
-    /* Make images expand to wrapper size (used in 2d modes). */
-}
 
 div.kc-horizon + div {
     display: none !important;
 }
-
-.kc-horizon { 
- perspective: none !important;
-}
-.kc-wrap {
-    background-image: none !important;
-    padding-bottom: 25% !important;
-}
 .kc-item:hover{
-/*    width:100% !important;    
-    height:75% !important;*/
- cursor: pointer;
+    cursor: pointer;
 
-}
-#imagecenter{
-    position: absolute;
-    text-align: center;
-    bottom: 70px;
-    width: 200px;
-    height: 100px;
-    color: white;
-    font-size: 20px
-    
 }
