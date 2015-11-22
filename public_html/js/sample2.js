@@ -56,7 +56,7 @@ if(mediawidth >=670){
  
  function backtohome(data){
      $("#"+$(data).attr("id")).css({"display":"none"});
-     $("#body").css({"display":"initial"});
+     $("#catagories").css({"display":"initial"});
  };
  
  function getvideolistready() {

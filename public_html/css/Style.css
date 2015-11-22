@@ -11,6 +11,15 @@ and open the template in the editor.
 #idwrapper{
 
 }
+
+.preloader{
+    position: absolute;
+    top: 48%;
+    left: 44%;
+    margin-top: -50px;
+    margin-left: -50px;
+}
+
 .backarrow{
     font-size: 41px;
     color: rgb(48, 114, 172);

@@ -8,47 +8,47 @@ var player;
 var totalcount = 0;
 var viewmodel;
 var kendodatasource;
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-
-function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {
-        height: '480',
-        width: '854',
-        videoId: 'R8rNw0bGOBA',
-        iv_load_policy:3,
-        playerVars: {'autoplay': 1},
-        events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-        }
-    });
-}
-// 4. The API will call this function when the video player is ready.
-function onPlayerReady(event) {
-    player.loadPlaylist(viewmodel.Hindivideolist());
-    player.setShuffle(true);
-    player.setLoop(true);
-    //event.target.playVideo();
-}
-function onPlayerStateChange(event) {
-    if (event.data == YT.PlayerState.ENDED) {
-        if (viewmodel.templistmode()) {
-            viewmodel.currentsongsindex(viewmodel.currentsongsindex() + 1);
-            player.loadVideoById(viewmodel.tempplaylist()[viewmodel.currentsongsindex()]);
-        }
-    }
-    if (event.data == YT.PlayerState.PAUSED) {
-        $("#playvideo").show();
-        $("#pausevideo").hide();
-    }
-    if (event.data == YT.PlayerState.PLAYING) {
-        $("#pausevideo").show();
-        $("#playvideo").hide();
-    }
-}
+//tag.src = "https://www.youtube.com/iframe_api";
+//var firstScriptTag = document.getElementsByTagName('script')[0];
+//firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+//
+//
+//function onYouTubeIframeAPIReady() {
+//    player = new YT.Player('player', {
+//        height: '480',
+//        width: '854',
+//        videoId: 'R8rNw0bGOBA',
+//        iv_load_policy:3,
+//        playerVars: {'autoplay': 1},
+//        events: {
+//            'onReady': onPlayerReady,
+//            'onStateChange': onPlayerStateChange
+//        }
+//    });
+//}
+//// 4. The API will call this function when the video player is ready.
+//function onPlayerReady(event) {
+//    player.loadPlaylist(viewmodel.Hindivideolist());
+//    player.setShuffle(true);
+//    player.setLoop(true);
+//    //event.target.playVideo();
+//}
+//function onPlayerStateChange(event) {
+//    if (event.data == YT.PlayerState.ENDED) {
+//        if (viewmodel.templistmode()) {
+//            viewmodel.currentsongsindex(viewmodel.currentsongsindex() + 1);
+//            player.loadVideoById(viewmodel.tempplaylist()[viewmodel.currentsongsindex()]);
+//        }
+//    }
+//    if (event.data == YT.PlayerState.PAUSED) {
+//        $("#playvideo").show();
+//        $("#pausevideo").hide();
+//    }
+//    if (event.data == YT.PlayerState.PLAYING) {
+//        $("#pausevideo").show();
+//        $("#playvideo").hide();
+//    }
+//}
 
 function YouTubeGetID(url) {
     var ID = '';
@@ -109,7 +109,7 @@ var viewmodeldata = function () {
     self.Englishsongslist = ko.observable("3x2ABSAMVno");
     self.Marathisongslist = ko.observable("0FBzaGdtzCs");
     self.RemixandDjsongslist = ko.observable("Dq64_9NCv1o");
-    self.Romancesongslist = ko.observable("DG2K7gQdzbE");
+    self.Romancesongslist = ko.observable("K_uXbheO3qU");
     self.Workoutsongslist = ko.observable("69CEiHfS_mc");
     self.bollywoodsuperhitReady = ko.observableArray();
     self.englishsongsReady = ko.observableArray();
@@ -192,8 +192,9 @@ var viewmodeldata = function () {
             };
     self.bollywoodsuperhit = function () {
         self.bollywoodsuperhitReady.removeAll();
-        $("#body").css({"display": "none"});
+        $("#catagories").css({"display": "none"});
         $("#bollywoodsuperhits").css({"display": "initial"});
+        $(".preloader").show();  
         $.ajax({
             method: 'get',
             url: "https://crossorigin.me/https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
@@ -206,11 +207,13 @@ var viewmodeldata = function () {
                         self.bollywoodsuperhitReady.push(new FormatToCategories(data.video[i]));
                     }
                 })
+               .complete(function (){$(".preloader").hide(); });
     };
     self.englishsongs = function () {
         self.englishsongsReady.removeAll();
-        $("#body").css({"display": "none"});
+        $("#catagories").css({"display": "none"});
         $("#englishsongs").css({"display": "initial"});
+        $(".preloader").show(); 
         $.ajax({
             method: 'get',
             url: "https://crossorigin.me/https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
@@ -222,12 +225,14 @@ var viewmodeldata = function () {
                     {
                         self.englishsongsReady.push(new FormatToCategories(data.video[i]));
                     }
-                });
+                })
+                .complete(function (){$(".preloader").hide(); });
     };
     self.Romance = function () {
         self.RomanceReady.removeAll();
-        $("#body").css({"display": "none"});
+        $("#catagories").css({"display": "none"});
         $("#romance").css({"display": "initial"});
+        $(".preloader").show();
         $.ajax({
             method: 'get',
             url: "https://crossorigin.me/https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
@@ -240,14 +245,16 @@ var viewmodeldata = function () {
                         self.RomanceReady.push(new FormatToCategories(data.video[i]));
                     }
                 })
+                .complete(function (){$(".preloader").hide(); });
 
     };
     self.Artists = function () {
         alert("Songs Comming Soon, Please Select Other Catagories");
         return false;
         self.ArtistsReady.removeAll();
-        $("#body").css({"display": "none"});
+        $("#catagories").css({"display": "none"});
         $("#artists").css({"display": "initial"});
+        $(".preloader").show()
         $.ajax({
             method: 'get',
             url: "https://crossorigin.me/https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
@@ -260,11 +267,13 @@ var viewmodeldata = function () {
                         self.ArtistsReady.push(new FormatToCategories(data.video[i]));
                     }
                 })
+               .complete(function (){$(".preloader").hide(); });
     };
     self.Workout = function () {
         self.WorkoutReady.removeAll();
-        $("#body").css({"display": "none"});
+        $("#catagories").css({"display": "none"});
         $("#workout").css({"display": "initial"});
+        $(".preloader").show();
         $.ajax({
             method: 'get',
             url: "https://crossorigin.me/https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
@@ -277,11 +286,13 @@ var viewmodeldata = function () {
                         self.WorkoutReady.push(new FormatToCategories(data.video[i]));
                     }
                 })
+               .complete(function (){$(".preloader").hide(); });
     };
     self.RemixDj = function () {
         self.RemixDjReady.removeAll();
-        $("#body").css({"display": "none"});
+        $("#catagories").css({"display": "none"});
         $("#remixdj").css({"display": "initial"});
+        $(".preloader").show();
         $.ajax({
             method: 'get',
             url: "https://crossorigin.me/https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
@@ -294,12 +305,14 @@ var viewmodeldata = function () {
                         self.RemixDjReady.push(new FormatToCategories(data.video[i]));
                     }
                 })
+               .complete(function (){$(".preloader").hide(); });
 
     };
     self.Marathisongs = function () {
         self.MarathiReady.removeAll();
-        $("#body").css({"display": "none"});
+        $("#catagories").css({"display": "none"});
         $("#marathi").css({"display": "initial"});
+         $(".preloader").show();
         $.ajax({
             method: 'get',
             url: "https://crossorigin.me/https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
@@ -312,8 +325,8 @@ var viewmodeldata = function () {
                         self.MarathiReady.push(new FormatToCategories(data.video[i]));
                     }
                 })
-    }
-    ;
+                  .complete(function (){$(".preloader").hide(); });
+    };
 };
 function FormatToDisplay(item) {
 
