@@ -173,12 +173,15 @@ var viewmodeldata = function () {
             $.each(results.items, function (index, item) {
                 self.youtubesearchedlist.push(new FormatToDisplay(item));
             });
+
+            $("#mycontainerid .thumbnail").addClass("animated rotateInDownLeft");
+            //$("#mycontainerid .thumbnail").addClass("animated flip");
         });
     };
     self.makemodalready = function () {
 
         $(".ui-autocomplete").css({"z-index": "1052"});
-        if ($(".youtubesearchfield").val()==="") {
+        if ($(".youtubesearchfield").val() === "") {
             $(".youtubesearchfield").val("top 100 songs of  Bollywood 2015");
             $("#goforsearch").trigger("click");
             $(".youtubesearchfield").val("");
@@ -192,7 +195,7 @@ var viewmodeldata = function () {
         self.bollywoodsuperhitReady.removeAll();
         $("#catagories").css({"display": "none"});
         $("#bollywoodsuperhits").css({"display": "initial"});
-        $(".preloader").show();  
+        $(".preloader").show();
         $.ajax({
             method: 'get',
             url: "https://crossorigin.me/https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
@@ -205,13 +208,15 @@ var viewmodeldata = function () {
                         self.bollywoodsuperhitReady.push(new FormatToCategories(data.video[i]));
                     }
                 })
-               .complete(function (){$(".preloader").hide(); });
+                .complete(function () {
+                    $(".preloader").hide();
+                });
     };
     self.englishsongs = function () {
         self.englishsongsReady.removeAll();
         $("#catagories").css({"display": "none"});
         $("#englishsongs").css({"display": "initial"});
-        $(".preloader").show(); 
+        $(".preloader").show();
         $.ajax({
             method: 'get',
             url: "https://crossorigin.me/https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
@@ -224,7 +229,9 @@ var viewmodeldata = function () {
                         self.englishsongsReady.push(new FormatToCategories(data.video[i]));
                     }
                 })
-                .complete(function (){$(".preloader").hide(); });
+                .complete(function () {
+                    $(".preloader").hide();
+                });
     };
     self.Romance = function () {
         self.RomanceReady.removeAll();
@@ -243,7 +250,9 @@ var viewmodeldata = function () {
                         self.RomanceReady.push(new FormatToCategories(data.video[i]));
                     }
                 })
-                .complete(function (){$(".preloader").hide(); });
+                .complete(function () {
+                    $(".preloader").hide();
+                });
 
     };
     self.Artists = function () {
@@ -265,7 +274,9 @@ var viewmodeldata = function () {
                         self.ArtistsReady.push(new FormatToCategories(data.video[i]));
                     }
                 })
-               .complete(function (){$(".preloader").hide(); });
+                .complete(function () {
+                    $(".preloader").hide();
+                });
     };
     self.Workout = function () {
         self.WorkoutReady.removeAll();
@@ -284,7 +295,9 @@ var viewmodeldata = function () {
                         self.WorkoutReady.push(new FormatToCategories(data.video[i]));
                     }
                 })
-               .complete(function (){$(".preloader").hide(); });
+                .complete(function () {
+                    $(".preloader").hide();
+                });
     };
     self.RemixDj = function () {
         self.RemixDjReady.removeAll();
@@ -303,14 +316,16 @@ var viewmodeldata = function () {
                         self.RemixDjReady.push(new FormatToCategories(data.video[i]));
                     }
                 })
-               .complete(function (){$(".preloader").hide(); });
+                .complete(function () {
+                    $(".preloader").hide();
+                });
 
     };
     self.Marathisongs = function () {
         self.MarathiReady.removeAll();
         $("#catagories").css({"display": "none"});
         $("#marathi").css({"display": "initial"});
-         $(".preloader").show();
+        $(".preloader").show();
         $.ajax({
             method: 'get',
             url: "https://crossorigin.me/https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
@@ -323,7 +338,9 @@ var viewmodeldata = function () {
                         self.MarathiReady.push(new FormatToCategories(data.video[i]));
                     }
                 })
-                  .complete(function (){$(".preloader").hide(); });
+                .complete(function () {
+                    $(".preloader").hide();
+                });
     };
 };
 function FormatToDisplay(item) {
@@ -347,7 +364,20 @@ function FormatToDisplay(item) {
         player.setPlaybackQuality("small");
     };
     this.closecurrentdiv = function (data) {
-        viewmodel.youtubesearchedlist.remove(data);
+        $("#animate_" + data.videoId).removeClass("animated rotateInDownLeft");
+        $("#animate_" + data.videoId).css({"animation-duration":"0.65s"});
+        $("#animate_" + data.videoId).addClass("animated rotateOutDownLeft");
+        var monkey = document.querySelector("#animate_" + data.videoId);
+//        monkey.addEventListener("animationstart", function (e) {
+//            console.log("log at beginning of monkey animation");
+//        }, false);
+//        monkey.addEventListener("animationiteration", function (e) {
+//            console.log("log at beginning of each subsequent iteration");
+//        }, false);
+        monkey.addEventListener("animationend", function (e) {
+            viewmodel.youtubesearchedlist.remove(data);
+        }, false);
+
     };
     this.playaddedsongs = function (data) {
         $("#" + data.videoId).hide();

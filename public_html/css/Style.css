@@ -11,6 +11,12 @@ and open the template in the editor.
 #idwrapper{
 
 }
+#songstemplist{
+    margin-top: 18px;
+}
+#mycontainerid .thumbnail{
+    animation-duration: 2s;
+}
 
 .preloader{
     position: absolute;

@@ -15,6 +15,7 @@ and open the template in the editor.
         <link rel="stylesheet" href="css/kendo.default.min.css">
         <link href="css/jquery-ui.css" rel="Stylesheet">
         <link href="css/killercarousel.css" type="text/css" rel="stylesheet" />
+        <link rel="stylesheet" href="css/animate.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/bootstrap-switch.min.css">
@@ -346,7 +347,7 @@ and open the template in the editor.
                     <div class="modal-body">
                         <div class="row" id="mycontainerid" data-bind="foreach:{data:youtubesearchedlist}">
                             <div class="col-xs-6 col-md-3">
-                                <a data-bind="attr:{title:title},"  class="thumbnail">
+                                <a data-bind="attr:{title:title,id:'animate_'+videoId},"  class="thumbnail">
                                     <span data-bind="click:closecurrentdiv " id="closebutton" class="glyphicon glyphicon-remove"></span>
                                     <span  data-bind="attr:{id:videoId},click:playaddedsongs "class="glyphicon glyphicon-plus pull-right"></span>
                                     <span  data-bind="attr:{id:'ok'+videoId},click:removefromtemplist "class="glyphicon glyphicon-ok pull-right" style="display: none"></span>
