@@ -5,9 +5,11 @@
         <group>
             <file>file:/home/kishor/webapp/Myproject/public_html/css/Style.css</file>
             <file>file:/home/kishor/webapp/Myproject/public_html/index.html</file>
+            <file>file:/home/kishor/webapp/Myproject/public_html/videolist/RemixandDjsongslist.json</file>
             <file>file:/home/kishor/webapp/Myproject/public_html/js/sample.js</file>
             <file>file:/home/kishor/webapp/Myproject/public_html/js/sample2.js</file>
             <file>file:/home/kishor/webapp/Myproject/public_html/videolist/Englishsongslist.json</file>
+            <file>file:/home/kishor/webapp/Myproject/public_html/videolist/Hindivideolist.json</file>
             <file>file:/home/kishor/webapp/Myproject/public_html/videolist/Marathisongslist.json</file>
         </group>
     </open-files>

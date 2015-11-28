@@ -17,7 +17,11 @@ and open the template in the editor.
 #mycontainerid .thumbnail{
     animation-duration: 2s;
 }
-
+.closebutton{
+    font-size: 28px !important;
+    margin-top: -12px !important;
+    /* color: rgb(14, 8, 244); */
+}
 .preloader{
     position: absolute;
     top: 48%;

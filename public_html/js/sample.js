@@ -17,6 +17,7 @@ function onYouTubeIframeAPIReady() {
         height: '480',
         width: '854',
         videoId: 'R8rNw0bGOBA',
+        iv_load_policy: 3,
         playerVars: {'autoplay': 1},
         events: {
             'onReady': onPlayerReady,
@@ -46,7 +47,8 @@ function onPlayerStateChange(event) {
         $("#pausevideo").show();
         $("#playvideo").hide();
     }
-   }
+}
+
 
 function YouTubeGetID(url) {
     var ID = '';
@@ -192,155 +194,167 @@ var viewmodeldata = function () {
                 getvideolistready();
             };
     self.bollywoodsuperhit = function () {
-        self.bollywoodsuperhitReady.removeAll();
+
         $("#catagories").css({"display": "none"});
         $("#bollywoodsuperhits").css({"display": "initial"});
-        $(".preloader").show();
-        $.ajax({
-            method: 'get',
-            url: "https://crossorigin.me/https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
-            dataType: "json",
-            data: {video_ids: viewmodel.bollywoodsuperhitlist()},
-        })
-                .done(function (data) {
-                    for (var i = 0; i < data.video.length; i++)
-                    {
-                        self.bollywoodsuperhitReady.push(new FormatToCategories(data.video[i]));
-                    }
-                })
-                .complete(function () {
-                    $(".preloader").hide();
-                });
+        if (self.bollywoodsuperhitReady().length === 0) {
+            $(".preloader").show();
+            $.ajax({
+                method: 'get',
+                url: "https://crossorigin.me/https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
+                dataType: "json",
+                data: {video_ids: viewmodel.bollywoodsuperhitlist()},
+            })
+                    .done(function (data) {
+
+                        for (var i = 0; i < data.video.length; i++)
+                        {
+                            self.bollywoodsuperhitReady.push(new FormatToCategories(data.video[i]));
+                        }
+
+                    })
+                    .complete(function () {
+                        $(".preloader").hide();
+                    });
+        }
     };
     self.englishsongs = function () {
-        self.englishsongsReady.removeAll();
         $("#catagories").css({"display": "none"});
         $("#englishsongs").css({"display": "initial"});
-        $(".preloader").show();
-        $.ajax({
-            method: 'get',
-            url: "https://crossorigin.me/https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
-            dataType: "json",
-            data: {video_ids: viewmodel.Englishsongslist()},
-        })
-                .done(function (data) {
-                    for (var i = 0; i < data.video.length; i++)
-                    {
-                        self.englishsongsReady.push(new FormatToCategories(data.video[i]));
-                    }
-                })
-                .complete(function () {
-                    $(".preloader").hide();
-                });
+        if (self.englishsongsReady().length === 0) {
+            $(".preloader").show();
+            $.ajax({
+                method: 'get',
+                url: "https://crossorigin.me/https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
+                dataType: "json",
+                data: {video_ids: viewmodel.Englishsongslist()},
+            })
+                    .done(function (data) {
+                        for (var i = 0; i < data.video.length; i++)
+                        {
+                            self.englishsongsReady.push(new FormatToCategories(data.video[i]));
+                        }
+                    })
+                    .complete(function () {
+                        $(".preloader").hide();
+                    });
+
+        }
     };
     self.Romance = function () {
-        self.RomanceReady.removeAll();
         $("#catagories").css({"display": "none"});
         $("#romance").css({"display": "initial"});
-        $(".preloader").show();
-        $.ajax({
-            method: 'get',
-            url: "https://crossorigin.me/https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
-            dataType: "json",
-            data: {video_ids: viewmodel.Romancesongslist()}
-        })
-                .done(function (data) {
-                    for (var i = 0; i < data.video.length; i++)
-                    {
-                        self.RomanceReady.push(new FormatToCategories(data.video[i]));
-                    }
-                })
-                .complete(function () {
-                    $(".preloader").hide();
-                });
+        if (self.RomanceReady().length()===0) {
+            $(".preloader").show();
+            $.ajax({
+                method: 'get',
+                url: "https://crossorigin.me/https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
+                dataType: "json",
+                data: {video_ids: viewmodel.Romancesongslist()}
+            })
+                    .done(function (data) {
+                        for (var i = 0; i < data.video.length; i++)
+                        {
+                            self.RomanceReady.push(new FormatToCategories(data.video[i]));
+                        }
+                    })
+                    .complete(function () {
+                        $(".preloader").hide();
+                    });
+        }
+
 
     };
     self.Artists = function () {
         alert("Songs Comming Soon, Please Select Other Catagories");
         return false;
-        self.ArtistsReady.removeAll();
         $("#catagories").css({"display": "none"});
         $("#artists").css({"display": "initial"});
-        $(".preloader").show()
-        $.ajax({
-            method: 'get',
-            url: "https://crossorigin.me/https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
-            dataType: "json",
-            data: {video_ids: "3x2ABSAMVno,t4H_Zoh7G5A,SmM0653YvXU,EPo5wWmKEaI,_Z5-P9v3F8w,uelHwf8o7_U"}
-        })
-                .done(function (data) {
-                    for (var i = 0; i < data.video.length; i++)
-                    {
-                        self.ArtistsReady.push(new FormatToCategories(data.video[i]));
-                    }
-                })
-                .complete(function () {
-                    $(".preloader").hide();
-                });
+        if (self.ArtistsReady().length===0) {
+            $(".preloader").show()
+            $.ajax({
+                method: 'get',
+                url: "https://crossorigin.me/https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
+                dataType: "json",
+                data: {video_ids: "3x2ABSAMVno,t4H_Zoh7G5A,SmM0653YvXU,EPo5wWmKEaI,_Z5-P9v3F8w,uelHwf8o7_U"}
+            })
+                    .done(function (data) {
+                        for (var i = 0; i < data.video.length; i++)
+                        {
+                            self.ArtistsReady.push(new FormatToCategories(data.video[i]));
+                        }
+                    })
+                    .complete(function () {
+                        $(".preloader").hide();
+                    });
+        }
     };
     self.Workout = function () {
-        self.WorkoutReady.removeAll();
         $("#catagories").css({"display": "none"});
         $("#workout").css({"display": "initial"});
-        $(".preloader").show();
-        $.ajax({
-            method: 'get',
-            url: "https://crossorigin.me/https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
-            dataType: "json",
-            data: {video_ids: viewmodel.Workoutsongslist()}
-        })
-                .done(function (data) {
-                    for (var i = 0; i < data.video.length; i++)
-                    {
-                        self.WorkoutReady.push(new FormatToCategories(data.video[i]));
-                    }
-                })
-                .complete(function () {
-                    $(".preloader").hide();
-                });
+        if (self.WorkoutReady().length===0) {
+            $(".preloader").show();
+            $.ajax({
+                method: 'get',
+                url: "https://crossorigin.me/https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
+                dataType: "json",
+                data: {video_ids: viewmodel.Workoutsongslist()}
+            })
+                    .done(function (data) {
+                        for (var i = 0; i < data.video.length; i++)
+                        {
+                            self.WorkoutReady.push(new FormatToCategories(data.video[i]));
+                        }
+                    })
+                    .complete(function () {
+                        $(".preloader").hide();
+                    });
+        }
     };
     self.RemixDj = function () {
-        self.RemixDjReady.removeAll();
         $("#catagories").css({"display": "none"});
         $("#remixdj").css({"display": "initial"});
-        $(".preloader").show();
-        $.ajax({
-            method: 'get',
-            url: "https://crossorigin.me/https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
-            dataType: "json",
-            data: {video_ids: viewmodel.RemixandDjsongslist()}
-        })
-                .done(function (data) {
-                    for (var i = 0; i < data.video.length; i++)
-                    {
-                        self.RemixDjReady.push(new FormatToCategories(data.video[i]));
-                    }
-                })
-                .complete(function () {
-                    $(".preloader").hide();
-                });
+        if (self.RemixDjReady().length===0) {
+            $(".preloader").show();
+            $.ajax({
+                method: 'get',
+                url: "https://crossorigin.me/https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
+                dataType: "json",
+                data: {video_ids: viewmodel.RemixandDjsongslist()}
+            })
+                    .done(function (data) {
+                        for (var i = 0; i < data.video.length; i++)
+                        {
+                            self.RemixDjReady.push(new FormatToCategories(data.video[i]));
+                        }
+                    })
+                    .complete(function () {
+                        $(".preloader").hide();
+                    });
+        }
 
     };
     self.Marathisongs = function () {
-        self.MarathiReady.removeAll();
         $("#catagories").css({"display": "none"});
         $("#marathi").css({"display": "initial"});
-        $(".preloader").show();
-        $.ajax({
-            method: 'get',
-            url: "https://crossorigin.me/https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
-            dataType: "json",
-            data: {video_ids: viewmodel.Marathisongslist()}
-        })
-                .done(function (data) {
-                    for (var i = 0; i < data.video.length; i++)
-                    {
-                        self.MarathiReady.push(new FormatToCategories(data.video[i]));
-                    }
-                })
-                .complete(function () {
-                    $(".preloader").hide();
-                });
+        if (self.MarathiReady().length===0) {
+            $(".preloader").show();
+            $.ajax({
+                method: 'get',
+                url: "https://crossorigin.me/https://www.youtube.com/list_ajax?style=json&action_get_templist=1",
+                dataType: "json",
+                data: {video_ids: viewmodel.Marathisongslist()}
+            })
+                    .done(function (data) {
+                        for (var i = 0; i < data.video.length; i++)
+                        {
+                            self.MarathiReady.push(new FormatToCategories(data.video[i]));
+                        }
+                    })
+                    .complete(function () {
+                        $(".preloader").hide();
+                    });
+        }
     };
 };
 function FormatToDisplay(item) {
@@ -365,7 +379,7 @@ function FormatToDisplay(item) {
     };
     this.closecurrentdiv = function (data) {
         $("#animate_" + data.videoId).removeClass("animated rotateInDownLeft");
-        $("#animate_" + data.videoId).css({"animation-duration":"0.65s"});
+        $("#animate_" + data.videoId).css({"animation-duration": "0.65s"});
         $("#animate_" + data.videoId).addClass("animated rotateOutDownLeft");
         var monkey = document.querySelector("#animate_" + data.videoId);
 //        monkey.addEventListener("animationstart", function (e) {
