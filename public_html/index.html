@@ -89,22 +89,30 @@ and open the template in the editor.
 
             </div>
         </div>
-       
+
         <!-- Start of Bollywood SuperHits songs-->
         <div id="bollywoodsuperhits" style="display: none" >
             <div class="container">
                 <div class="row" style="margin-top: 15px;margin-bottom: 15px">
-                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <span class="glyphicon glyphicon-arrow-left backarrow" onclick="backtohome(document.getElementById('bollywoodsuperhits'))">
                         </span>  
                     </div>  
-                    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                        <div><strong style="color: rgb(184, 59, 107)"> Bollywood SuperHit</strong>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div>
+                                <strong style="color: rgb(184, 59, 107)"> Bollywood SuperHit</strong>
+                            </div>
+
                         </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <button type="button"  class="btn btn-primary playall"  onclick=" playallsongs('bollywoodsuperhits')"><span class="glyphicon glyphicon-play"></span>  Play All</button>
+                        </div>
+
                     </div>
                 </div> 
                 <div class="preloader">
-                     <img  src="images/ripple.svg" alt = "loader">
+                    <img  src="images/ripple.svg" alt = "loader">
                 </div>
                 <div class="row" id="catagoriesid" data-bind="foreach:{data:bollywoodsuperhitReady}">
                     <div class="col-xs-6 col-md-3 col-sm-3">
@@ -123,17 +131,23 @@ and open the template in the editor.
         <div id="englishsongs" style="display: none" >
             <div class="container">
                 <div class="row" style="margin-top: 15px;margin-bottom: 15px">
-                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <span class="glyphicon glyphicon-arrow-left backarrow" onclick="backtohome(document.getElementById('englishsongs'))" >
                         </span>  
                     </div>  
-                    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                        <div><strong style="color: rgb(184, 59, 107)"> English songs</strong>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div>
+                                <strong style="color: rgb(184, 59, 107)"> English songs</strong>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <button type="button"  class="btn btn-primary playall"  onclick=" playallsongs('englishsongs')"><span class="glyphicon glyphicon-play"></span>  Play All</button>
                         </div>
                     </div>
                 </div> 
                 <div class="preloader">
-                     <img  src="images/ripple.svg" alt = "loader">
+                    <img  src="images/ripple.svg" alt = "loader">
                 </div>
                 <div class="row" id="catagoriesid" data-bind="foreach:{data:englishsongsReady}">
                     <div class="col-xs-6 col-md-3 col-sm-3">
@@ -152,17 +166,23 @@ and open the template in the editor.
         <div id="romance" style="display: none" >
             <div class="container">
                 <div class="row" style="margin-top: 15px;margin-bottom: 15px">
-                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <span class="glyphicon glyphicon-arrow-left backarrow" onclick="backtohome(document.getElementById('romance'))" >
                         </span>  
-                    </div>  
-                    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                        <div><strong style="color: rgb(184, 59, 107)"> Romance</strong>
+                    </div>                     
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div>
+                                <strong style="color: rgb(184, 59, 107)"> Romance</strong>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <button type="button"  class="btn btn-primary playall"  onclick=" playallsongs('romance')"><span class="glyphicon glyphicon-play"></span>  Play All</button>
                         </div>
                     </div>
                 </div> 
                 <div class="preloader">
-                     <img  src="images/ripple.svg" alt = "loader">
+                    <img  src="images/ripple.svg" alt = "loader">
                 </div>
                 <div class="row" id="catagoriesid" data-bind="foreach:{data:RomanceReady}">
                     <div class="col-xs-6 col-md-3 col-sm-3">
@@ -181,17 +201,23 @@ and open the template in the editor.
         <div id="artists" style="display: none" >
             <div class="container">
                 <div class="row" style="margin-top: 15px;margin-bottom: 15px">
-                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <span class="glyphicon glyphicon-arrow-left backarrow" onclick="backtohome(document.getElementById('artists'))" >
                         </span>  
-                    </div>  
-                    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                        <div><strong style="color: rgb(184, 59, 107)">Artists</strong>
+                    </div> 
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div>
+                                <strong style="color: rgb(184, 59, 107)"> Artists</strong>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <button type="button"  class="btn btn-primary playall"  onclick=" playallsongs('artists')"><span class="glyphicon glyphicon-play"></span>  Play All</button>
                         </div>
                     </div>
                 </div> 
                 <div class="preloader">
-                     <img  src="images/ripple.svg" alt = "loader">
+                    <img  src="images/ripple.svg" alt = "loader">
                 </div>
                 <div class="row" id="catagoriesid" data-bind="foreach:{data:ArtistsReady}">
                     <div class="col-xs-6 col-md-3 col-sm-3">
@@ -210,17 +236,23 @@ and open the template in the editor.
         <div id="workout" style="display: none" >
             <div class="container">
                 <div class="row" style="margin-top: 15px;margin-bottom: 15px">
-                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <span class="glyphicon glyphicon-arrow-left backarrow" onclick="backtohome(document.getElementById('workout'))" >
                         </span>  
                     </div>  
-                    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                        <div><strong style="color: rgb(184, 59, 107)">Workout</strong>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div>
+                                <strong style="color: rgb(184, 59, 107)"> Workout</strong>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <button type="button"  class="btn btn-primary playall"  onclick=" playallsongs('workout')"><span class="glyphicon glyphicon-play"></span>  Play All</button>
                         </div>
                     </div>
                 </div> 
                 <div class="preloader">
-                     <img  src="images/ripple.svg" alt = "loader">
+                    <img  src="images/ripple.svg" alt = "loader">
                 </div>
                 <div class="row" id="catagoriesid" data-bind="foreach:{data:WorkoutReady}">
                     <div class="col-xs-6 col-md-3 col-sm-3">
@@ -239,17 +271,23 @@ and open the template in the editor.
         <div id="remixdj" style="display: none" >
             <div class="container">
                 <div class="row" style="margin-top: 15px;margin-bottom: 15px">
-                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <span class="glyphicon glyphicon-arrow-left backarrow" onclick="backtohome(document.getElementById('remixdj'))" >
                         </span>  
                     </div>  
-                    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                        <div><strong style="color: rgb(184, 59, 107)">Remix & Dj</strong>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div>
+                                <strong style="color: rgb(184, 59, 107)"> Remix & Dj</strong>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <button type="button"  class="btn btn-primary playall"  onclick=" playallsongs('remixdj')"><span class="glyphicon glyphicon-play"></span>  Play All</button>
                         </div>
                     </div>
                 </div> 
                 <div class="preloader">
-                     <img  src="images/ripple.svg" alt = "loader">
+                    <img  src="images/ripple.svg" alt = "loader">
                 </div>
                 <div class="row" id="catagoriesid" data-bind="foreach:{data:RemixDjReady}">
                     <div class="col-xs-6 col-md-3 col-sm-3">
@@ -268,17 +306,23 @@ and open the template in the editor.
         <div id="marathi" style="display: none" >
             <div class="container">
                 <div class="row" style="margin-top: 15px;margin-bottom: 15px">
-                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <span class="glyphicon glyphicon-arrow-left backarrow" onclick="backtohome(document.getElementById('marathi'))" >
                         </span>  
-                    </div>  
-                    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                        <div><strong style="color: rgb(184, 59, 107)">Marathi Songs</strong>
+                    </div> 
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div>
+                                <strong style="color: rgb(184, 59, 107)"> Marathi Songs</strong>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <button type="button"  class="btn btn-primary playall"  onclick=" playallsongs('marathi')"><span class="glyphicon glyphicon-play"></span>  Play All</button>
                         </div>
                     </div>
                 </div> 
                 <div class="preloader">
-                     <img  src="images/ripple.svg" alt = "loader">
+                    <img  src="images/ripple.svg" alt = "loader">
                 </div>
                 <div class="row" id="catagoriesid" data-bind="foreach:{data:MarathiReady}">
                     <div class="col-xs-6 col-md-3 col-sm-3">

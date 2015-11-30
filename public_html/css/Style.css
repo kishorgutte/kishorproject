@@ -11,6 +11,9 @@ and open the template in the editor.
 #idwrapper{
 
 }
+#catagoriesid .thumbnail{
+    animation-duration: 1.8s;
+}
 #songstemplist{
     margin-top: 18px;
 }

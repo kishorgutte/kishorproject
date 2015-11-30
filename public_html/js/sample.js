@@ -217,6 +217,8 @@ var viewmodeldata = function () {
                         $(".preloader").hide();
                     });
         }
+        $("#catagoriesid .thumbnail").removeClass("animated rotateInDownLeft");
+        $("#catagoriesid .thumbnail").addClass("animated rotateInDownLeft");
     };
     self.englishsongs = function () {
         $("#catagories").css({"display": "none"});
@@ -240,11 +242,13 @@ var viewmodeldata = function () {
                     });
 
         }
+        $("#catagoriesid .thumbnail").removeClass("animated rotateInDownLeft");
+        $("#catagoriesid .thumbnail").addClass("animated rotateInDownLeft");
     };
     self.Romance = function () {
         $("#catagories").css({"display": "none"});
         $("#romance").css({"display": "initial"});
-        if (self.RomanceReady().length()===0) {
+        if (self.RomanceReady().length===0) {
             $(".preloader").show();
             $.ajax({
                 method: 'get',
@@ -263,7 +267,8 @@ var viewmodeldata = function () {
                     });
         }
 
-
+        $("#catagoriesid .thumbnail").removeClass("animated rotateInDownLeft");
+        $("#catagoriesid .thumbnail").addClass("animated rotateInDownLeft");
     };
     self.Artists = function () {
         alert("Songs Comming Soon, Please Select Other Catagories");
@@ -288,6 +293,8 @@ var viewmodeldata = function () {
                         $(".preloader").hide();
                     });
         }
+        $("#catagoriesid .thumbnail").removeClass("animated rotateInDownLeft");
+        $("#catagoriesid .thumbnail").addClass("animated rotateInDownLeft");
     };
     self.Workout = function () {
         $("#catagories").css({"display": "none"});
@@ -310,6 +317,8 @@ var viewmodeldata = function () {
                         $(".preloader").hide();
                     });
         }
+        $("#catagoriesid .thumbnail").removeClass("animated rotateInDownLeft");
+        $("#catagoriesid .thumbnail").addClass("animated rotateInDownLeft");
     };
     self.RemixDj = function () {
         $("#catagories").css({"display": "none"});
@@ -332,6 +341,8 @@ var viewmodeldata = function () {
                         $(".preloader").hide();
                     });
         }
+        $("#catagoriesid .thumbnail").removeClass("animated rotateInDownLeft");
+        $("#catagoriesid .thumbnail").addClass("animated rotateInDownLeft");
 
     };
     self.Marathisongs = function () {
@@ -355,6 +366,8 @@ var viewmodeldata = function () {
                         $(".preloader").hide();
                     });
         }
+        $("#catagoriesid .thumbnail").removeClass("animated rotateInDownLeft");
+        $("#catagoriesid .thumbnail").addClass("animated rotateInDownLeft");
     };
 };
 function FormatToDisplay(item) {
@@ -479,6 +492,28 @@ function init() {
     });
 }
 ;
+
+function playallsongs(data){
+    $(".playall").blur();
+    
+    if(data==="bollywoodsuperhits"){
+        player.loadPlaylist(viewmodel.bollywoodsuperhitlist());
+    }else if(data==="marathi"){
+        player.loadPlaylist(viewmodel.Marathisongslist());
+    }else if(data==="remixdj"){
+        player.loadPlaylist(viewmodel.RemixandDjsongslist());
+    }else if(data==="workout"){
+        player.loadPlaylist(viewmodel.Workoutsongslist());
+    }else if(data==="artists"){
+        //player.loadPlaylist();
+    }else if(data==="romance"){
+        player.loadPlaylist(viewmodel.Romancesongslist());
+    }else if(data==="englishsongs"){
+        player.loadPlaylist(viewmodel.Englishsongslist());
+    }
+        
+}
+
 //ko.bindingHandlers.kendoDropDownList.options={
 //    optionLabel : "Choose a School...",
 //    filter :"startswith",
