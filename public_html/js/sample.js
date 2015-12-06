@@ -3,52 +3,52 @@
 //curl http://52.11.228.37:8080/git/notifyCommit?url=https://github.com/kishorgutte/kishorproject.git
 //client id=954570292134-r2u7o4our3i3kv7meoj569ga30j17qvf.apps.googleusercontent.com
 //key =SGiPBvEwW7uVQbvKA1Bxr_0b
-var tag = document.createElement('script');
-var player;
-var totalcount = 0;
-var viewmodel;
-var kendodatasource;
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {
-        height: '480',
-        width: '854',
-        videoId: 'R8rNw0bGOBA',
-        iv_load_policy: 3,
-        playerVars: {'autoplay': 1},
-        events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-        }
-    });
-}
-// 4. The API will call this function when the video player is ready.
-function onPlayerReady(event) {
-    player.loadPlaylist(viewmodel.Hindivideolist());
-    player.setShuffle(true);
-    player.setLoop(true);
-    //event.target.playVideo();
-}
-function onPlayerStateChange(event) {
-    if (event.data == YT.PlayerState.ENDED) {
-        if (viewmodel.templistmode()) {
-            viewmodel.currentsongsindex(viewmodel.currentsongsindex() + 1);
-            player.loadVideoById(viewmodel.tempplaylist()[viewmodel.currentsongsindex()]);
-        }
-    }
-    if (event.data == YT.PlayerState.PAUSED) {
-        $("#playvideo").show();
-        $("#pausevideo").hide();
-    }
-    if (event.data == YT.PlayerState.PLAYING) {
-        $("#pausevideo").show();
-        $("#playvideo").hide();
-    }
-}
-
+//var tag = document.createElement('script');
+//var player;
+//var totalcount = 0;
+//var viewmodel;
+//var kendodatasource;
+//tag.src = "https://www.youtube.com/iframe_api";
+//var firstScriptTag = document.getElementsByTagName('script')[0];
+//firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+//
+//function onYouTubeIframeAPIReady() {
+//    player = new YT.Player('player', {
+//        height: '480',
+//        width: '854',
+//        videoId: 'R8rNw0bGOBA',
+//        iv_load_policy: 3,
+//        playerVars: {'autoplay': 1},
+//        events: {
+//            'onReady': onPlayerReady,
+//            'onStateChange': onPlayerStateChange
+//        }
+//    });
+//}
+//// 4. The API will call this function when the video player is ready.
+//function onPlayerReady(event) {
+//    player.loadPlaylist(viewmodel.Hindivideolist());
+//    player.setShuffle(true);
+//    player.setLoop(true);
+//    //event.target.playVideo();
+//}
+//function onPlayerStateChange(event) {
+//    if (event.data == YT.PlayerState.ENDED) {
+//        if (viewmodel.templistmode()) {
+//            viewmodel.currentsongsindex(viewmodel.currentsongsindex() + 1);
+//            player.loadVideoById(viewmodel.tempplaylist()[viewmodel.currentsongsindex()]);
+//        }
+//    }
+//    if (event.data == YT.PlayerState.PAUSED) {
+//        $("#playvideo").show();
+//        $("#pausevideo").hide();
+//    }
+//    if (event.data == YT.PlayerState.PLAYING) {
+//        $("#pausevideo").show();
+//        $("#playvideo").hide();
+//    }
+//}
+//
 
 function YouTubeGetID(url) {
     var ID = '';

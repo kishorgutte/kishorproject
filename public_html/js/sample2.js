@@ -45,10 +45,22 @@ if(mediawidth >=670){
                 });
             });      
     
-}
-
-        
+}        
  $('.kc-horizon').css({" perspective": "0px"});
+ 
+ 
+ $("#owl-demo").owlCarousel({
+    items : 4,
+    lazyLoad : true,
+    navigation : true
+  }); 
+  
+  $("#owl-demo2").owlCarousel({
+    items : 4,
+    lazyLoad : true,
+    navigation : true
+  }); 
+ 
  
  
  

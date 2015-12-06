@@ -16,6 +16,9 @@ and open the template in the editor.
         <link href="css/jquery-ui.css" rel="Stylesheet">
         <link href="css/killercarousel.css" type="text/css" rel="stylesheet" />
         <link rel="stylesheet" href="css/animate.css">
+        <link rel="stylesheet" href="css/owl.carousel.css">
+        <link rel="stylesheet" href="css/owl.theme.css">
+        <link rel="stylesheet" href="css/owl.transitions.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/bootstrap-switch.min.css">
@@ -50,7 +53,7 @@ and open the template in the editor.
             <div id="catagories" class="row">
                 <div class="col-md-12  col-lg-12 col-sm-12 col-xs-12">
                     <div id="idwrapper">
-                        <span class="text-center" id="selectbyid"> Select songs by genre </span>  
+                        <span class="text-center selectbyid"> Select songs by genre </span>  
                         <div class = "kc-wrap myclass">
                             <!-- Carousel items follow -->
                             <div class="kc-item" data-bind="click:bollywoodsuperhit">
@@ -88,6 +91,34 @@ and open the template in the editor.
                 </div>
 
             </div>
+
+            <div id="actorcatagories" class="row">
+                <span class="text-center selectbyid"> Select songs by actor </span>  
+                <div id="owl-demo" class="owl-carousel">
+                    <div class="item "><img class="lazyOwl img-rounded"  data-src="images/shahrukh-khan.jpg" alt="Lazy Owl Image"></div>
+                    <div class="item "><img class="lazyOwl img-rounded" data-src="images/salman-khan.jpg" alt="Lazy Owl Image"></div>
+                    <div class="item "><img class="lazyOwl img-rounded" data-src="images/akshay-kumar.jpg" alt="Lazy Owl Image"></div>
+                    <div class="item "><img class="lazyOwl img-rounded" data-src="images/ajay-devgan.jpg" alt="Lazy Owl Image"></div>
+                    <div class="item "><img class="lazyOwl img-rounded" data-src="images/shahrukh-khan.jpg" alt="Lazy Owl Image"></div>
+                    <div class="item "><img class="lazyOwl img-rounded" data-src="images/shahrukh-khan.jpg" alt="Lazy Owl Image"></div>
+                    <div class="item "><img class="lazyOwl img-rounded" data-src="images/shahrukh-khan.jpg" alt="Lazy Owl Image"></div>
+                    <div class="item "><img class="lazyOwl img-rounded" data-src="images/shahrukh-khan.jpg" alt="Lazy Owl Image"></div>
+                </div>
+            </div>
+            <div id="owl-demo2" class="owl-carousel">
+                <div class="item "><img class="lazyOwl" data-src="images/naruto_profile.jpg" alt="Lazy Owl Image"></div>
+                <div class="item "><img class="lazyOwl" data-src="images/naruto_profile.jpg" alt="Lazy Owl Image"></div>
+                <div class="item "><img class="lazyOwl" data-src="images/naruto_profile.jpg" alt="Lazy Owl Image"></div>
+                <div class="item "><img class="lazyOwl" data-src="images/naruto_profile.jpg" alt="Lazy Owl Image"></div>
+                <div class="item "><img class="lazyOwl" data-src="images/naruto_profile.jpg" alt="Lazy Owl Image"></div>
+                <div class="item "><img class="lazyOwl" data-src="images/naruto_profile.jpg" alt="Lazy Owl Image"></div>
+                <div class="item "><img class="lazyOwl" data-src="images/naruto_profile.jpg" alt="Lazy Owl Image"></div>
+                <div class="item "><img class="lazyOwl" data-src="images/naruto_profile.jpg" alt="Lazy Owl Image"></div>
+            </div>
+
+
+
+
         </div>
 
         <!-- Start of Bollywood SuperHits songs-->
@@ -412,6 +443,7 @@ and open the template in the editor.
         <script src="js/knockout-kendo.min.js"></script>
         <script src="js/jquery-ui.js"></script>
         <script src="js/killercarousel.js"></script>
+        <script src="js/owl.carousel.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/bootstrap-switch.min.js"></script>
         <script src="js/sample2.js"></script>

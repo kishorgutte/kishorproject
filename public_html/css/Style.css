@@ -8,6 +8,13 @@ and open the template in the editor.
     Author     : Kishor Gutte
 */
 
+#actorcatagories #owl-demo{
+    margin-top: 5px;
+}
+#actorcatagories .selectbyid{
+    margin-left: 18px;
+}
+
 #idwrapper{
 
 }
@@ -126,7 +133,7 @@ and open the template in the editor.
 
 }
 @media (max-width: 430px){
-    #selectbyid{
+    .selectbyid{
         color:rgb(110, 37, 87);
         font-size:13px;
         text-align: center;
@@ -134,7 +141,7 @@ and open the template in the editor.
 }
 
 @media (min-width: 430px){
-    #selectbyid{
+    .selectbyid{
         color:rgb(110, 37, 87);
         font-size:18px;
         text-align: center;
@@ -280,4 +287,22 @@ div.kc-horizon + div {
 .kc-item:hover{
     cursor: pointer;
 
+}
+
+#owl-demo .item{
+  margin: 3px;
+}
+#owl-demo .item img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+#owl-demo2 .item{
+  margin: 3px;
+}
+#owl-demo2 .item img{
+  display: block;
+  width: 100%;
+  height: auto;
 }
